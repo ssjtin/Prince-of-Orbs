@@ -1,0 +1,467 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E0F5A9623DEEEAE0019D541 /* ComboSound11.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8823DEEEAD0019D541 /* ComboSound11.wav */; };
+		8E0F5A9723DEEEAE0019D541 /* ComboSound9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8923DEEEAD0019D541 /* ComboSound9.wav */; };
+		8E0F5A9823DEEEAE0019D541 /* TPASound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8A23DEEEAD0019D541 /* TPASound.wav */; };
+		8E0F5A9923DEEEAE0019D541 /* ComboSound2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8B23DEEEAD0019D541 /* ComboSound2.wav */; };
+		8E0F5A9A23DEEEAE0019D541 /* ComboSound5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8C23DEEEAD0019D541 /* ComboSound5.wav */; };
+		8E0F5A9B23DEEEAE0019D541 /* ComboSound7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8D23DEEEAD0019D541 /* ComboSound7.wav */; };
+		8E0F5A9C23DEEEAE0019D541 /* ComboSound3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8E23DEEEAD0019D541 /* ComboSound3.wav */; };
+		8E0F5A9D23DEEEAE0019D541 /* ComboSound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8F23DEEEAD0019D541 /* ComboSound1.wav */; };
+		8E0F5A9E23DEEEAE0019D541 /* ComboSound10.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A9023DEEEAD0019D541 /* ComboSound10.wav */; };
+		8E0F5A9F23DEEEAE0019D541 /* ComboSound8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A9123DEEEAD0019D541 /* ComboSound8.wav */; };
+		8E0F5AA023DEEEAE0019D541 /* ComboSound4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A9223DEEEAE0019D541 /* ComboSound4.wav */; };
+		8E0F5AA123DEEEAE0019D541 /* ComboSound6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A9323DEEEAE0019D541 /* ComboSound6.wav */; };
+		8E0F5AA223DEEEAE0019D541 /* OrbMovement.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A9423DEEEAE0019D541 /* OrbMovement.wav */; };
+		8E0F5AA323DEEEAE0019D541 /* ComboSound12.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A9523DEEEAE0019D541 /* ComboSound12.wav */; };
+		8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */; };
+		8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */; };
+		8EDC22FA23CA8F7A007BDE84 /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */; };
+		8EDC22FD23CA8F7A007BDE84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */; };
+		8EDC22FF23CA8F7E007BDE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC22FE23CA8F7E007BDE84 /* Assets.xcassets */; };
+		8EDC230223CA8F7E007BDE84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC230023CA8F7E007BDE84 /* LaunchScreen.storyboard */; };
+		8EDC230E23CA9461007BDE84 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230D23CA9461007BDE84 /* Level.swift */; };
+		8EDC231023CA974A007BDE84 /* BattleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230F23CA974A007BDE84 /* BattleScene.swift */; };
+		8EDC231223CA98B5007BDE84 /* GameSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC231123CA98B5007BDE84 /* GameSound.swift */; };
+		8EDC232C23CA98E9007BDE84 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232923CA98E9007BDE84 /* Chain.swift */; };
+		8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232A23CA98E9007BDE84 /* Orb.swift */; };
+		8EDC232E23CA98E9007BDE84 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232B23CA98E9007BDE84 /* Swap.swift */; };
+		8EDC233223CA9A75007BDE84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232F23CA9A75007BDE84 /* Constants.swift */; };
+		8EDC233323CA9A75007BDE84 /* SKSpriteNode_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */; };
+		8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233123CA9A75007BDE84 /* Array2D.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8E0F5A8823DEEEAD0019D541 /* ComboSound11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound11.wav; sourceTree = "<group>"; };
+		8E0F5A8923DEEEAD0019D541 /* ComboSound9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound9.wav; sourceTree = "<group>"; };
+		8E0F5A8A23DEEEAD0019D541 /* TPASound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TPASound.wav; sourceTree = "<group>"; };
+		8E0F5A8B23DEEEAD0019D541 /* ComboSound2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound2.wav; sourceTree = "<group>"; };
+		8E0F5A8C23DEEEAD0019D541 /* ComboSound5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound5.wav; sourceTree = "<group>"; };
+		8E0F5A8D23DEEEAD0019D541 /* ComboSound7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound7.wav; sourceTree = "<group>"; };
+		8E0F5A8E23DEEEAD0019D541 /* ComboSound3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound3.wav; sourceTree = "<group>"; };
+		8E0F5A8F23DEEEAD0019D541 /* ComboSound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound1.wav; sourceTree = "<group>"; };
+		8E0F5A9023DEEEAD0019D541 /* ComboSound10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound10.wav; sourceTree = "<group>"; };
+		8E0F5A9123DEEEAD0019D541 /* ComboSound8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound8.wav; sourceTree = "<group>"; };
+		8E0F5A9223DEEEAE0019D541 /* ComboSound4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound4.wav; sourceTree = "<group>"; };
+		8E0F5A9323DEEEAE0019D541 /* ComboSound6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound6.wav; sourceTree = "<group>"; };
+		8E0F5A9423DEEEAE0019D541 /* OrbMovement.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OrbMovement.wav; sourceTree = "<group>"; };
+		8E0F5A9523DEEEAE0019D541 /* ComboSound12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound12.wav; sourceTree = "<group>"; };
+		8EDC22F223CA8F7A007BDE84 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
+		8EDC22FC23CA8F7A007BDE84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8EDC22FE23CA8F7E007BDE84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8EDC230123CA8F7E007BDE84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8EDC230323CA8F7E007BDE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EDC230D23CA9461007BDE84 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		8EDC230F23CA974A007BDE84 /* BattleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleScene.swift; sourceTree = "<group>"; };
+		8EDC231123CA98B5007BDE84 /* GameSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSound.swift; sourceTree = "<group>"; };
+		8EDC232923CA98E9007BDE84 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		8EDC232A23CA98E9007BDE84 /* Orb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orb.swift; sourceTree = "<group>"; };
+		8EDC232B23CA98E9007BDE84 /* Swap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
+		8EDC232F23CA9A75007BDE84 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpriteNode_Extension.swift; sourceTree = "<group>"; };
+		8EDC233123CA9A75007BDE84 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EDC22EF23CA8F7A007BDE84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E0F5AA423DEEEDF0019D541 /* Sound Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E0F5A8F23DEEEAD0019D541 /* ComboSound1.wav */,
+				8E0F5A8B23DEEEAD0019D541 /* ComboSound2.wav */,
+				8E0F5A8E23DEEEAD0019D541 /* ComboSound3.wav */,
+				8E0F5A9223DEEEAE0019D541 /* ComboSound4.wav */,
+				8E0F5A8C23DEEEAD0019D541 /* ComboSound5.wav */,
+				8E0F5A9323DEEEAE0019D541 /* ComboSound6.wav */,
+				8E0F5A8D23DEEEAD0019D541 /* ComboSound7.wav */,
+				8E0F5A9123DEEEAD0019D541 /* ComboSound8.wav */,
+				8E0F5A8923DEEEAD0019D541 /* ComboSound9.wav */,
+				8E0F5A9023DEEEAD0019D541 /* ComboSound10.wav */,
+				8E0F5A8823DEEEAD0019D541 /* ComboSound11.wav */,
+				8E0F5A9523DEEEAE0019D541 /* ComboSound12.wav */,
+				8E0F5A9423DEEEAE0019D541 /* OrbMovement.wav */,
+				8E0F5A8A23DEEEAD0019D541 /* TPASound.wav */,
+			);
+			path = "Sound Files";
+			sourceTree = "<group>";
+		};
+		8E0F5AA523DEF11C0019D541 /* Puzzle Logic */ = {
+			isa = PBXGroup;
+			children = (
+				8EDC233123CA9A75007BDE84 /* Array2D.swift */,
+				8EDC232923CA98E9007BDE84 /* Chain.swift */,
+				8EDC232A23CA98E9007BDE84 /* Orb.swift */,
+				8EDC232B23CA98E9007BDE84 /* Swap.swift */,
+				8EDC230D23CA9461007BDE84 /* Level.swift */,
+			);
+			path = "Puzzle Logic";
+			sourceTree = "<group>";
+		};
+		8E0F5AA623DEF1370019D541 /* Extensions + Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */,
+			);
+			path = "Extensions + Helpers";
+			sourceTree = "<group>";
+		};
+		8E0F5AA723DEF1700019D541 /* Puzzle Board */ = {
+			isa = PBXGroup;
+			children = (
+				8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */,
+				8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */,
+				8EDC230F23CA974A007BDE84 /* BattleScene.swift */,
+			);
+			path = "Puzzle Board";
+			sourceTree = "<group>";
+		};
+		8EDC22E923CA8F7A007BDE84 = {
+			isa = PBXGroup;
+			children = (
+				8EDC22F423CA8F7A007BDE84 /* PuzzleGame */,
+				8EDC22F323CA8F7A007BDE84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8EDC22F323CA8F7A007BDE84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8EDC22F223CA8F7A007BDE84 /* PuzzleGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EDC22F423CA8F7A007BDE84 /* PuzzleGame */ = {
+			isa = PBXGroup;
+			children = (
+				8EDC232F23CA9A75007BDE84 /* Constants.swift */,
+				8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */,
+				8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */,
+				8E0F5AA723DEF1700019D541 /* Puzzle Board */,
+				8E0F5AA623DEF1370019D541 /* Extensions + Helpers */,
+				8E0F5AA523DEF11C0019D541 /* Puzzle Logic */,
+				8EDC231123CA98B5007BDE84 /* GameSound.swift */,
+				8E0F5AA423DEEEDF0019D541 /* Sound Files */,
+				8EDC22FE23CA8F7E007BDE84 /* Assets.xcassets */,
+				8EDC230023CA8F7E007BDE84 /* LaunchScreen.storyboard */,
+				8EDC230323CA8F7E007BDE84 /* Info.plist */,
+			);
+			path = PuzzleGame;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8EDC22F123CA8F7A007BDE84 /* PuzzleGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EDC230623CA8F7E007BDE84 /* Build configuration list for PBXNativeTarget "PuzzleGame" */;
+			buildPhases = (
+				8EDC22EE23CA8F7A007BDE84 /* Sources */,
+				8EDC22EF23CA8F7A007BDE84 /* Frameworks */,
+				8EDC22F023CA8F7A007BDE84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PuzzleGame;
+			productName = PuzzleGame;
+			productReference = 8EDC22F223CA8F7A007BDE84 /* PuzzleGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8EDC22EA23CA8F7A007BDE84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Hoang Luong";
+				TargetAttributes = {
+					8EDC22F123CA8F7A007BDE84 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 8EDC22ED23CA8F7A007BDE84 /* Build configuration list for PBXProject "PuzzleGame" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8EDC22E923CA8F7A007BDE84;
+			productRefGroup = 8EDC22F323CA8F7A007BDE84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8EDC22F123CA8F7A007BDE84 /* PuzzleGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8EDC22F023CA8F7A007BDE84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E0F5A9F23DEEEAE0019D541 /* ComboSound8.wav in Resources */,
+				8EDC230223CA8F7E007BDE84 /* LaunchScreen.storyboard in Resources */,
+				8E0F5A9B23DEEEAE0019D541 /* ComboSound7.wav in Resources */,
+				8E0F5A9A23DEEEAE0019D541 /* ComboSound5.wav in Resources */,
+				8E0F5AA123DEEEAE0019D541 /* ComboSound6.wav in Resources */,
+				8E0F5AA323DEEEAE0019D541 /* ComboSound12.wav in Resources */,
+				8E0F5A9723DEEEAE0019D541 /* ComboSound9.wav in Resources */,
+				8E0F5A9923DEEEAE0019D541 /* ComboSound2.wav in Resources */,
+				8E0F5A9D23DEEEAE0019D541 /* ComboSound1.wav in Resources */,
+				8E0F5A9E23DEEEAE0019D541 /* ComboSound10.wav in Resources */,
+				8E0F5AA223DEEEAE0019D541 /* OrbMovement.wav in Resources */,
+				8EDC22FF23CA8F7E007BDE84 /* Assets.xcassets in Resources */,
+				8EDC22FD23CA8F7A007BDE84 /* Main.storyboard in Resources */,
+				8E0F5AA023DEEEAE0019D541 /* ComboSound4.wav in Resources */,
+				8E0F5A9C23DEEEAE0019D541 /* ComboSound3.wav in Resources */,
+				8E0F5A9823DEEEAE0019D541 /* TPASound.wav in Resources */,
+				8E0F5A9623DEEEAE0019D541 /* ComboSound11.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8EDC22EE23CA8F7A007BDE84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EDC22FA23CA8F7A007BDE84 /* PuzzleViewController.swift in Sources */,
+				8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */,
+				8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */,
+				8EDC233323CA9A75007BDE84 /* SKSpriteNode_Extension.swift in Sources */,
+				8EDC232C23CA98E9007BDE84 /* Chain.swift in Sources */,
+				8EDC231023CA974A007BDE84 /* BattleScene.swift in Sources */,
+				8EDC231223CA98B5007BDE84 /* GameSound.swift in Sources */,
+				8EDC233223CA9A75007BDE84 /* Constants.swift in Sources */,
+				8EDC230E23CA9461007BDE84 /* Level.swift in Sources */,
+				8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */,
+				8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */,
+				8EDC232E23CA98E9007BDE84 /* Swap.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8EDC22FC23CA8F7A007BDE84 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8EDC230023CA8F7E007BDE84 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8EDC230123CA8F7E007BDE84 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8EDC230423CA8F7E007BDE84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8EDC230523CA8F7E007BDE84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8EDC230723CA8F7E007BDE84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 49H596ZHS6;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoangluong.PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8EDC230823CA8F7E007BDE84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 49H596ZHS6;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoangluong.PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EDC22ED23CA8F7A007BDE84 /* Build configuration list for PBXProject "PuzzleGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EDC230423CA8F7E007BDE84 /* Debug */,
+				8EDC230523CA8F7E007BDE84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EDC230623CA8F7E007BDE84 /* Build configuration list for PBXNativeTarget "PuzzleGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EDC230723CA8F7E007BDE84 /* Debug */,
+				8EDC230823CA8F7E007BDE84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8EDC22EA23CA8F7A007BDE84 /* Project object */;
+}
