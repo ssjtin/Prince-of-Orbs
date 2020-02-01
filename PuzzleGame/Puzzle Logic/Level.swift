@@ -92,7 +92,6 @@ class Level {
                 set.insert(orb)
             }
         }
-        
         return set
     }
     

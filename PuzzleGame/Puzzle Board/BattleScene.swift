@@ -23,7 +23,9 @@ class BattleScene: SKScene {
             }
         }
     }
+    
     var isSwiping: Bool = false
+    
     var activeOrb: SKSpriteNode?
     var initialOrb: SKSpriteNode?
     
@@ -33,6 +35,7 @@ class BattleScene: SKScene {
     
     //Scene layers
     let gameLayer = SKNode()
+    let moveTimer = MoveTimerNode(size: CGSize(width: 25, height: 150))
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -43,6 +46,7 @@ class BattleScene: SKScene {
         
         setBackgroundImage()
         configureMainLayers()
+        configureTimerBar()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,11 +67,17 @@ class BattleScene: SKScene {
         //Set origin point for orbs and tiles
         let layerPosition = CGPoint(
             x: -tileWidth*3,
-            y: -(UIScreen.main.bounds.height/2 - 10))
+            y: -(screenHeight / 2 - 10))
         //Add child layers to parents
         addChild(gameLayer)
         level.puzzleNode.position = layerPosition
         gameLayer.addChild(level.puzzleNode)
+    }
+    
+    private func configureTimerBar() {
+        moveTimer.delegate = self
+        moveTimer.position = CGPoint(x: -screenWidth / 2 + 30, y: 0)
+        gameLayer.addChild(moveTimer)
     }
     
     private func pointFor(column: Int, row: Int) -> CGPoint {
@@ -143,6 +153,7 @@ class BattleScene: SKScene {
                 guard toRow >= 0 && toRow < numRows else { return }
                 
                 swipedOrbs.append((toColumn, toRow))
+                moveTimer.startTimer()
                 
                 if swipedOrbs.count == 2 {
                     trySwap()
@@ -152,18 +163,23 @@ class BattleScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endMove()
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endMove()
+    }
+    
+    func endMove() {
         activeOrb?.removeFromParent()
         activeOrb = nil
         initialOrb?.alpha = 1
         initialOrb = nil
         isSwiping = false
+        moveTimer.cancelTimer()
         if swipedOrbs.count == 1 {
             handleMatches()
         }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touchesEnded(touches, with: event)
     }
     
     func trySwap() {
@@ -177,8 +193,11 @@ class BattleScene: SKScene {
         }
     }
     
+    func startMoveTimer() {
+        moveTimer.startTimer()
+    }
+    
     func handleSwipe(_ swap: Swap) {
-        
         level.performSwap(swap)
         animate(swap) { [unowned self] in
             self.swipedOrbs.remove(at: 0)
@@ -330,6 +349,16 @@ class BattleScene: SKScene {
     
     func endCurrentStage() {
         print("defeated enemy")
+    }
+    
+}
+
+extension BattleScene: TimerDelegate {
+    
+    func timerDidEnd() {
+        if self.isSwiping == true {
+            endMove()
+        }
     }
     
 }

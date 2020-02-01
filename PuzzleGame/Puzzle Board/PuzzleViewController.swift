@@ -23,6 +23,5 @@ class PuzzleViewController: UIViewController {
         skView.presentScene(scene)
     }
 
-
 }
 
