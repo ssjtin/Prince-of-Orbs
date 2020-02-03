@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>counter</key>
+		<integer>3</integer>
+		<key>attacks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>absorb</string>
+				<key>element</key>
+				<string>2</string>
+			</dict>
+		</array>
+		<key>health</key>
+		<integer>100</integer>
+		<key>imageName</key>
+		<string>mewtwo</string>
+		<key>id</key>
+		<string>mewtwo</string>
+	</dict>
+</array>
+</plist>

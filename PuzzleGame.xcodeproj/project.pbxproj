@@ -28,7 +28,7 @@
 		8EDC22FF23CA8F7E007BDE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC22FE23CA8F7E007BDE84 /* Assets.xcassets */; };
 		8EDC230223CA8F7E007BDE84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC230023CA8F7E007BDE84 /* LaunchScreen.storyboard */; };
 		8EDC230E23CA9461007BDE84 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230D23CA9461007BDE84 /* Level.swift */; };
-		8EDC231023CA974A007BDE84 /* BattleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230F23CA974A007BDE84 /* BattleScene.swift */; };
+		8EDC231023CA974A007BDE84 /* PuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230F23CA974A007BDE84 /* PuzzleScene.swift */; };
 		8EDC231223CA98B5007BDE84 /* GameSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC231123CA98B5007BDE84 /* GameSound.swift */; };
 		8EDC232C23CA98E9007BDE84 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232923CA98E9007BDE84 /* Chain.swift */; };
 		8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232A23CA98E9007BDE84 /* Orb.swift */; };
@@ -37,6 +37,8 @@
 		8EDC233323CA9A75007BDE84 /* SKSpriteNode_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */; };
 		8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233123CA9A75007BDE84 /* Array2D.swift */; };
 		8EDC5FFC23E57B16002A671F /* MoveTimerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */; };
+		8EDC600023E68C02002A671F /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC5FFF23E68C02002A671F /* EnemyNode.swift */; };
+		8EDC600423E82B91002A671F /* EnemyPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC600323E82B91002A671F /* EnemyPlist.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +65,7 @@
 		8EDC230123CA8F7E007BDE84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EDC230323CA8F7E007BDE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EDC230D23CA9461007BDE84 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
-		8EDC230F23CA974A007BDE84 /* BattleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleScene.swift; sourceTree = "<group>"; };
+		8EDC230F23CA974A007BDE84 /* PuzzleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleScene.swift; sourceTree = "<group>"; };
 		8EDC231123CA98B5007BDE84 /* GameSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSound.swift; sourceTree = "<group>"; };
 		8EDC232923CA98E9007BDE84 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		8EDC232A23CA98E9007BDE84 /* Orb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orb.swift; sourceTree = "<group>"; };
@@ -72,6 +74,8 @@
 		8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpriteNode_Extension.swift; sourceTree = "<group>"; };
 		8EDC233123CA9A75007BDE84 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTimerNode.swift; sourceTree = "<group>"; };
+		8EDC5FFF23E68C02002A671F /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
+		8EDC600323E82B91002A671F /* EnemyPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EnemyPlist.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +135,9 @@
 			children = (
 				8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */,
 				8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */,
-				8EDC230F23CA974A007BDE84 /* BattleScene.swift */,
+				8EDC230F23CA974A007BDE84 /* PuzzleScene.swift */,
+				8EDC5FFF23E68C02002A671F /* EnemyNode.swift */,
+				8EDC600323E82B91002A671F /* EnemyPlist.plist */,
 				8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */,
 			);
 			path = "Puzzle Board";
@@ -237,6 +243,7 @@
 				8E0F5AA323DEEEAE0019D541 /* ComboSound12.wav in Resources */,
 				8E0F5A9723DEEEAE0019D541 /* ComboSound9.wav in Resources */,
 				8E0F5A9923DEEEAE0019D541 /* ComboSound2.wav in Resources */,
+				8EDC600423E82B91002A671F /* EnemyPlist.plist in Resources */,
 				8E0F5A9D23DEEEAE0019D541 /* ComboSound1.wav in Resources */,
 				8E0F5A9E23DEEEAE0019D541 /* ComboSound10.wav in Resources */,
 				8E0F5AA223DEEEAE0019D541 /* OrbMovement.wav in Resources */,
@@ -262,9 +269,10 @@
 				8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */,
 				8EDC233323CA9A75007BDE84 /* SKSpriteNode_Extension.swift in Sources */,
 				8EDC232C23CA98E9007BDE84 /* Chain.swift in Sources */,
-				8EDC231023CA974A007BDE84 /* BattleScene.swift in Sources */,
+				8EDC231023CA974A007BDE84 /* PuzzleScene.swift in Sources */,
 				8EDC231223CA98B5007BDE84 /* GameSound.swift in Sources */,
 				8EDC233223CA9A75007BDE84 /* Constants.swift in Sources */,
+				8EDC600023E68C02002A671F /* EnemyNode.swift in Sources */,
 				8EDC230E23CA9461007BDE84 /* Level.swift in Sources */,
 				8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */,
 				8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */,

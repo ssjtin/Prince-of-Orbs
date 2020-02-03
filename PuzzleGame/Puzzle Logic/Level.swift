@@ -5,7 +5,7 @@
 //  Created by Hoang Luong on 22/7/19.
 //  Copyright © 2019 Hoang Luong. All rights reserved.
 //
-//  The level class handles the logic behind population orbs, matching orbs, refilling orbs, etc.
+//  The level class handles the logic behind populating orbs, matching orbs, refilling orbs, etc.
 
 import SpriteKit
 

@@ -12,20 +12,26 @@ protocol TimerDelegate: class {
     func timerDidEnd()
 }
 
-class MoveTimerNode: SKShapeNode {
+class MoveTimerNode: SKSpriteNode {
     
     var timeLimit: TimeInterval = 4.0
     var isActive: Bool = false
     var timer: Timer?
     
+    var mainBar = SKSpriteNode()
+    var length: CGFloat = 200
+    
     weak var delegate: TimerDelegate?
     
     init(size: CGSize) {
-        super.init()
+        super.init(texture: nil, color: .clear, size: size)
         
-        path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: 2).cgPath
-        fillColor = .blue
-        lineWidth = 2
+        mainBar.color = .green
+        mainBar.size = CGSize(width: size.width-3, height: size.height-3)
+        mainBar.anchorPoint = CGPoint(x: 0, y: 0.5)
+        mainBar.zPosition = 10
+        mainBar.position = CGPoint(x: -size.width/2, y: 0)
+        addChild(mainBar)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,10 +42,14 @@ class MoveTimerNode: SKShapeNode {
         guard !isActive else { return }
         
         isActive = true
+        let scaleAction = SKAction.scaleX(to: 0, duration: timeLimit)
+        mainBar.run(scaleAction, withKey: "timeLimitAnimate")
+        
         timer = Timer.scheduledTimer(withTimeInterval: timeLimit, repeats: false, block: { (_) in
             self.delegate?.timerDidEnd()
             self.timer = nil
             self.isActive = false
+            self.reset()
         })
     }
     
@@ -47,6 +57,12 @@ class MoveTimerNode: SKShapeNode {
         timer?.invalidate()
         timer = nil
         isActive = false
+        mainBar.removeAllActions()
+        self.reset()
+    }
+    
+    func reset() {
+        mainBar.scale(to: CGSize(width: length, height: 30))
     }
     
 }

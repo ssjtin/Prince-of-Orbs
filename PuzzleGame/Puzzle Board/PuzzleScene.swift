@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class BattleScene: SKScene {
+class PuzzleScene: SKScene {
     
     var level = Level()                //Level class controls puzzle orbs
     let gameSound = GameSound()         //Preload game sounds
@@ -35,11 +35,11 @@ class BattleScene: SKScene {
     
     //Scene layers
     let gameLayer = SKNode()
-    let moveTimer = MoveTimerNode(size: CGSize(width: 25, height: 150))
+    let moveTimer = MoveTimerNode(size: CGSize(width: 200, height: 30))
     
     override init(size: CGSize) {
-        super.init(size: size)
         
+        super.init(size: size)
         //Set scene anchorPoint to centre of screen
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         scaleMode = .aspectFill
@@ -47,19 +47,16 @@ class BattleScene: SKScene {
         setBackgroundImage()
         configureMainLayers()
         configureTimerBar()
+        configureEnemyNode()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-    
-    }
-    
     private func setBackgroundImage() {
         let background = SKSpriteNode(imageNamed: "background")
+        background.size = CGSize(width: screenWidth * 2, height: screenHeight)
         addChild(background)
     }
     
@@ -76,8 +73,14 @@ class BattleScene: SKScene {
     
     private func configureTimerBar() {
         moveTimer.delegate = self
-        moveTimer.position = CGPoint(x: -screenWidth / 2 + 30, y: 0)
+        moveTimer.position = CGPoint(x: 0, y: 0)
         gameLayer.addChild(moveTimer)
+    }
+    
+    private func configureEnemyNode() {
+//        addChild(enemyNode)
+//        let yPosition = screenHeight / 2 - enemyNode.sprite.size.height / 2 - 50
+//        enemyNode.position = CGPoint(x: 0, y: yPosition)
     }
     
     private func pointFor(column: Int, row: Int) -> CGPoint {
@@ -123,6 +126,7 @@ class BattleScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard isSwiping else { return }
         //Escape if first touch was not a valid orb
         guard let orb = swipedOrbs.last else { return }
         guard let touch = touches.first else { return }
@@ -171,6 +175,7 @@ class BattleScene: SKScene {
     }
     
     func endMove() {
+        isUserInteractionEnabled = false
         activeOrb?.removeFromParent()
         activeOrb = nil
         initialOrb?.alpha = 1
@@ -183,13 +188,11 @@ class BattleScene: SKScene {
     }
     
     func trySwap() {
-
         if  let toOrb = level.orb(atColumn: swipedOrbs[1].column, row: swipedOrbs[1].row),
             let fromOrb = level.orb(atColumn: swipedOrbs[0].column, row: swipedOrbs[0].row) {
             
             let swap = Swap(orbA: fromOrb, orbB: toOrb)
             handleSwipe(swap)
-
         }
     }
     
@@ -220,6 +223,7 @@ class BattleScene: SKScene {
                             removeMatches(newChains)
                         } else {
                             self.resolveCombos()
+                            self.isUserInteractionEnabled = true
                         }
                     })
                 })
@@ -345,15 +349,12 @@ class BattleScene: SKScene {
     }
     
     func resolveCombos() {
+        comboCount = 0
     }
-    
-    func endCurrentStage() {
-        print("defeated enemy")
-    }
-    
+
 }
 
-extension BattleScene: TimerDelegate {
+extension PuzzleScene: TimerDelegate {
     
     func timerDidEnd() {
         if self.isSwiping == true {

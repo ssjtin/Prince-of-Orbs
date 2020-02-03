@@ -46,9 +46,7 @@ class GameSound {
         case 9: return comboSound9
         case 10: return comboSound10
         case 11: return comboSound11
-        case 12: return comboSound12
-        
-        default: return comboSound1
+        default: return comboSound12
         }
     }
     

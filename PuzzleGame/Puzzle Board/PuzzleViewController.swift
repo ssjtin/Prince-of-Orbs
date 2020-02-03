@@ -18,9 +18,25 @@ class PuzzleViewController: UIViewController {
         
         skView = self.view as? SKView
         
-        let scene = BattleScene(size: skView.frame.size)
+        let scene = PuzzleScene(size: skView.frame.size)
         
         skView.presentScene(scene)
+        
+        loadEnemies()
+    }
+    
+    private func loadEnemies() {
+        do {
+            if let path = Bundle.main.path(forResource: "EnemyPlist", ofType: "plist") {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path))
+                let decoder = PropertyListDecoder()
+                let enemies = try decoder.decode([Enemy].self, from: data)
+                print(enemies)
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
     }
 
 }
