@@ -13,6 +13,8 @@ class PuzzleViewController: UIViewController {
     
     weak var skView: SKView!
     
+    var enemies = [Enemy]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,9 +22,9 @@ class PuzzleViewController: UIViewController {
         
         let scene = PuzzleScene(size: skView.frame.size)
         
-        skView.presentScene(scene)
-        
         loadEnemies()
+        scene.load(enemy: enemies[0])
+        skView.presentScene(scene)
     }
     
     private func loadEnemies() {
@@ -31,7 +33,7 @@ class PuzzleViewController: UIViewController {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
                 let decoder = PropertyListDecoder()
                 let enemies = try decoder.decode([Enemy].self, from: data)
-                print(enemies)
+                self.enemies = enemies
             }
         } catch let error {
             print(error.localizedDescription)

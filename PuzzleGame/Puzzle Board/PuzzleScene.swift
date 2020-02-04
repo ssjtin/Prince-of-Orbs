@@ -14,6 +14,7 @@ class PuzzleScene: SKScene {
     
     var level = Level()                //Level class controls puzzle orbs
     let gameSound = GameSound()         //Preload game sounds
+    var enemyNode: EnemyNode!
 
     //Orb handling logic variables
     var swipedOrbs: [(column: Int, row: Int)] = [] {
@@ -33,6 +34,8 @@ class PuzzleScene: SKScene {
     var comboCount: Int = 0
     var comboChains: [Chain] = []
     
+    var damageResolver = DamageResolver()
+    
     //Scene layers
     let gameLayer = SKNode()
     let moveTimer = MoveTimerNode(size: CGSize(width: 200, height: 30))
@@ -47,7 +50,6 @@ class PuzzleScene: SKScene {
         setBackgroundImage()
         configureMainLayers()
         configureTimerBar()
-        configureEnemyNode()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,16 +79,17 @@ class PuzzleScene: SKScene {
         gameLayer.addChild(moveTimer)
     }
     
-    private func configureEnemyNode() {
-//        addChild(enemyNode)
-//        let yPosition = screenHeight / 2 - enemyNode.sprite.size.height / 2 - 50
-//        enemyNode.position = CGPoint(x: 0, y: yPosition)
-    }
-    
     private func pointFor(column: Int, row: Int) -> CGPoint {
         return CGPoint(
             x: CGFloat(column) * tileWidth + tileWidth / 2,
             y: CGFloat(row) * tileHeight + tileHeight / 2)
+    }
+    
+    func load(enemy: Enemy) {
+        enemyNode = EnemyNode(enemy: enemy)
+        addChild(enemyNode)
+        let yPosition = screenHeight / 2 - enemyNode.sprite.size.height / 2 - 50
+        enemyNode.position = CGPoint(x: 0, y: yPosition)
     }
     
     //Touches methods
@@ -101,7 +104,7 @@ class PuzzleScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        print("DEBUG - touches began")
         guard let touch = touches.first else { return }
         
         swipedOrbs.removeAll()
@@ -126,6 +129,7 @@ class PuzzleScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("DEBUG - touches moved")
         guard isSwiping else { return }
         //Escape if first touch was not a valid orb
         guard let orb = swipedOrbs.last else { return }
@@ -167,24 +171,27 @@ class PuzzleScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        endMove()
+        print("DEBUG - touches ended")
+        if isSwiping {
+            endMove()
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        endMove()
+        if isSwiping {
+            endMove()
+        }
     }
     
     func endMove() {
-        isUserInteractionEnabled = false
         activeOrb?.removeFromParent()
         activeOrb = nil
         initialOrb?.alpha = 1
         initialOrb = nil
         isSwiping = false
         moveTimer.cancelTimer()
-        if swipedOrbs.count == 1 {
-            handleMatches()
-        }
+        isUserInteractionEnabled = false
+        handleMatches()
     }
     
     func trySwap() {
@@ -212,6 +219,8 @@ class PuzzleScene: SKScene {
     
     func handleMatches() {
         
+        var damage: Int = 0
+        
         func removeMatches(_ chains: Set<Chain>) {
             level.removeMatches(chains)
             animateMatchedOrbs(for: chains) {
@@ -220,9 +229,10 @@ class PuzzleScene: SKScene {
                     let columns = self.level.topUpOrbs()
                     self.animateNewOrbs(in: columns, completion: {
                         if let newChains = self.level.detectMatches() {
+                            damage += self.damageResolver.calculateDamage(from: Array(newChains))
                             removeMatches(newChains)
                         } else {
-                            self.resolveCombos()
+                            self.resolveCombos(damage: damage)
                             self.isUserInteractionEnabled = true
                         }
                     })
@@ -231,7 +241,10 @@ class PuzzleScene: SKScene {
         }
         
         if let chains = level.detectMatches() {
+            damage += damageResolver.calculateDamage(from: Array(chains))
             removeMatches(chains)
+        } else {
+            self.isUserInteractionEnabled = true
         }
         
     }
@@ -348,8 +361,9 @@ class PuzzleScene: SKScene {
         run(SKAction.wait(forDuration: longestDuration), completion: completion)
     }
     
-    func resolveCombos() {
+    func resolveCombos(damage: Int) {
         comboCount = 0
+        enemyNode.applyDamage(damage)
     }
 
 }

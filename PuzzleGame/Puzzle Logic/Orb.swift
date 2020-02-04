@@ -8,9 +8,12 @@
 
 import SpriteKit
 
-enum Element: Int {
+enum Element: Int, CaseIterable {
     case unknown = 0, Fire, Water, Grass, Light, Dark, Heal
     
+    static var allCases: [Element] {
+        return [.unknown, .Fire, .Water, .Grass, .Light, .Dark, .Heal]
+    }
     var spriteName: String {
         let spriteNames = [
             "red_orb",

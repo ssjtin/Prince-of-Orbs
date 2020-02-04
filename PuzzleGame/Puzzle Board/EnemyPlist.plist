@@ -21,5 +21,24 @@
 		<key>id</key>
 		<string>mewtwo</string>
 	</dict>
+    <dict>
+        <key>counter</key>
+        <integer>2</integer>
+        <key>attacks</key>
+        <array>
+            <dict>
+                <key>type</key>
+                <string>absorb</string>
+                <key>element</key>
+                <string>3</string>
+            </dict>
+        </array>
+        <key>health</key>
+        <integer>60</integer>
+        <key>imageName</key>
+        <string>pikachu</string>
+        <key>id</key>
+        <string>pikachu</string>
+    </dict>
 </array>
 </plist>

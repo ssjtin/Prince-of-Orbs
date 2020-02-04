@@ -39,6 +39,7 @@
 		8EDC5FFC23E57B16002A671F /* MoveTimerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */; };
 		8EDC600023E68C02002A671F /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC5FFF23E68C02002A671F /* EnemyNode.swift */; };
 		8EDC600423E82B91002A671F /* EnemyPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC600323E82B91002A671F /* EnemyPlist.plist */; };
+		8EDC600623E9851D002A671F /* DamageResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC600523E9851D002A671F /* DamageResolver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTimerNode.swift; sourceTree = "<group>"; };
 		8EDC5FFF23E68C02002A671F /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		8EDC600323E82B91002A671F /* EnemyPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EnemyPlist.plist; sourceTree = "<group>"; };
+		8EDC600523E9851D002A671F /* DamageResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageResolver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				8EDC232A23CA98E9007BDE84 /* Orb.swift */,
 				8EDC232B23CA98E9007BDE84 /* Swap.swift */,
 				8EDC230D23CA9461007BDE84 /* Level.swift */,
+				8EDC600523E9851D002A671F /* DamageResolver.swift */,
 			);
 			path = "Puzzle Logic";
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				8EDC231223CA98B5007BDE84 /* GameSound.swift in Sources */,
 				8EDC233223CA9A75007BDE84 /* Constants.swift in Sources */,
 				8EDC600023E68C02002A671F /* EnemyNode.swift in Sources */,
+				8EDC600623E9851D002A671F /* DamageResolver.swift in Sources */,
 				8EDC230E23CA9461007BDE84 /* Level.swift in Sources */,
 				8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */,
 				8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */,

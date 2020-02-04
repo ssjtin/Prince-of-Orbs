@@ -41,7 +41,11 @@ struct Enemy: Decodable {
     let id: String
     let imageName: String
     let attacks: [EnemyAttack]
-    let health: Int
+    var health: Int {
+        didSet {
+            print(self.health)
+        }
+    }
     let counter: Int
 }
 
@@ -52,7 +56,10 @@ class EnemyNode: SKNode {
     var backgroundSprite: SKSpriteNode
     var sprite: SKSpriteNode
     
+    var enemy: Enemy
+    
     init(enemy: Enemy) {
+        self.enemy = enemy
         sprite = SKSpriteNode(imageNamed: enemy.imageName)
         sprite.size = CGSize(width: 200, height: 200)
         backgroundSprite = SKSpriteNode(imageNamed: "aura")
@@ -66,5 +73,9 @@ class EnemyNode: SKNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func applyDamage(_ damage: Int) {
+        enemy.health -= damage
     }
 }
