@@ -26,6 +26,7 @@ class PuzzleScene: SKScene {
     }
     
     var isSwiping: Bool = false
+    var didActivateTurn: Bool = false
     
     var activeOrb: SKSpriteNode?
     var initialOrb: SKSpriteNode?
@@ -104,7 +105,6 @@ class PuzzleScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("DEBUG - touches began")
         guard let touch = touches.first else { return }
         
         swipedOrbs.removeAll()
@@ -129,7 +129,6 @@ class PuzzleScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("DEBUG - touches moved")
         guard isSwiping else { return }
         //Escape if first touch was not a valid orb
         guard let orb = swipedOrbs.last else { return }
@@ -162,6 +161,7 @@ class PuzzleScene: SKScene {
                 
                 swipedOrbs.append((toColumn, toRow))
                 moveTimer.startTimer()
+                didActivateTurn = true
                 
                 if swipedOrbs.count == 2 {
                     trySwap()
@@ -171,7 +171,6 @@ class PuzzleScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("DEBUG - touches ended")
         if isSwiping {
             endMove()
         }
@@ -233,20 +232,29 @@ class PuzzleScene: SKScene {
                             removeMatches(newChains)
                         } else {
                             self.resolveCombos(damage: damage)
-                            self.isUserInteractionEnabled = true
+                            self.didResolveTurn()
                         }
                     })
                 })
             }
         }
-        
         if let chains = level.detectMatches() {
             damage += damageResolver.calculateDamage(from: Array(chains))
             removeMatches(chains)
+        } else if didActivateTurn {
+            self.didActivateTurn = false
+            self.didResolveTurn()
         } else {
             self.isUserInteractionEnabled = true
         }
-        
+    }
+    
+    private func didResolveTurn() {
+        enemyNode.incrementAttack {
+            print(self.enemyNode.activeAttack)
+            print(self.enemyNode.turnCounter)
+            self.isUserInteractionEnabled = true
+        }
     }
     
     //Mark: ANIMATIONS
@@ -269,7 +277,6 @@ class PuzzleScene: SKScene {
         spriteB.run(moveB)
         
         run(gameSound.orbMovementSound)
-        
     }
     
     func animateMatchedOrbs(for chains: Set<Chain>, completion: @escaping () -> ()) {

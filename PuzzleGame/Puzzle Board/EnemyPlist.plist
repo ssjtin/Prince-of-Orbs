@@ -9,9 +9,15 @@
 		<array>
 			<dict>
 				<key>type</key>
-				<string>absorb</string>
+				<string>timeReduce</string>
+				<key>value</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>elementAbsorb</string>
 				<key>element</key>
-				<string>2</string>
+				<integer>2</integer>
 			</dict>
 		</array>
 		<key>health</key>
@@ -21,24 +27,24 @@
 		<key>id</key>
 		<string>mewtwo</string>
 	</dict>
-    <dict>
-        <key>counter</key>
-        <integer>2</integer>
-        <key>attacks</key>
-        <array>
-            <dict>
-                <key>type</key>
-                <string>absorb</string>
-                <key>element</key>
-                <string>3</string>
-            </dict>
-        </array>
-        <key>health</key>
-        <integer>60</integer>
-        <key>imageName</key>
-        <string>pikachu</string>
-        <key>id</key>
-        <string>pikachu</string>
-    </dict>
+	<dict>
+		<key>counter</key>
+		<integer>2</integer>
+		<key>attacks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>elementAbsorb</string>
+				<key>element</key>
+				<string>3</string>
+			</dict>
+		</array>
+		<key>health</key>
+		<integer>60</integer>
+		<key>imageName</key>
+		<string>pikachu</string>
+		<key>id</key>
+		<string>pikachu</string>
+	</dict>
 </array>
 </plist>

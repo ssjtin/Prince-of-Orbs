@@ -34,6 +34,9 @@ class PuzzleViewController: UIViewController {
                 let decoder = PropertyListDecoder()
                 let enemies = try decoder.decode([Enemy].self, from: data)
                 self.enemies = enemies
+                enemies.forEach { (enemy) in
+                    print(enemy)
+                }
             }
         } catch let error {
             print(error.localizedDescription)
