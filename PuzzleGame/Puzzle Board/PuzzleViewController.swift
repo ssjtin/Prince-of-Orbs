@@ -13,35 +13,33 @@ class PuzzleViewController: UIViewController {
     
     weak var skView: SKView!
     
-    var enemies = [Enemy]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         skView = self.view as? SKView
         
-        let scene = PuzzleScene(size: skView.frame.size)
+        let scene = GameScene(size: skView.frame.size)
         
-        loadEnemies()
-        scene.load(enemy: enemies[0])
+        let stages = readStagesFromList()
+        scene.load(stages: stages)
+        
         skView.presentScene(scene)
     }
     
-    private func loadEnemies() {
+    private func readStagesFromList() -> [Stage] {
         do {
-            if let path = Bundle.main.path(forResource: "EnemyPlist", ofType: "plist") {
+            if let path = Bundle.main.path(forResource: "Stages", ofType: "plist") {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
                 let decoder = PropertyListDecoder()
-                let enemies = try decoder.decode([Enemy].self, from: data)
-                self.enemies = enemies
-                enemies.forEach { (enemy) in
-                    print(enemy)
-                }
+                let stages = try decoder.decode([Stage].self, from: data)
+                return stages
             }
         } catch let error {
             print(error.localizedDescription)
+            return []
         }
-
+        
+        return []
     }
 
 }

@@ -4,27 +4,14 @@
 <array>
 	<dict>
 		<key>counter</key>
-		<integer>3</integer>
+		<integer>6</integer>
 		<key>attacks</key>
-		<array>
-			<dict>
-				<key>type</key>
-				<string>timeReduce</string>
-				<key>value</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>elementAbsorb</string>
-				<key>element</key>
-				<integer>2</integer>
-			</dict>
-		</array>
-		<key>health</key>
-		<integer>100</integer>
+		<array/>
+		<key>targetScore</key>
+		<integer>10</integer>
 		<key>imageName</key>
 		<string>mewtwo</string>
-		<key>id</key>
+		<key>name</key>
 		<string>mewtwo</string>
 	</dict>
 	<dict>
@@ -39,11 +26,11 @@
 				<string>3</string>
 			</dict>
 		</array>
-		<key>health</key>
+		<key>targetScore</key>
 		<integer>60</integer>
 		<key>imageName</key>
 		<string>pikachu</string>
-		<key>id</key>
+		<key>name</key>
 		<string>pikachu</string>
 	</dict>
 </array>

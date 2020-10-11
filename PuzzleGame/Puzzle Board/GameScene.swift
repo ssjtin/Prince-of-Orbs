@@ -10,11 +10,14 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class PuzzleScene: SKScene {
+class GameScene: SKScene {
     
-    var level = Level()                //Level class controls puzzle orbs
+    var level = PuzzleBoard()                //Level class controls puzzle orbs
     let gameSound = GameSound()         //Preload game sounds
-    var enemyNode: EnemyNode!
+    
+    var stageNode: StageNode!
+    var stages = [Stage]()
+    var currentStageIndex = 0
 
     //Orb handling logic variables
     var swipedOrbs: [(column: Int, row: Int)] = [] {
@@ -40,6 +43,7 @@ class PuzzleScene: SKScene {
     //Scene layers
     let gameLayer = SKNode()
     let moveTimer = MoveTimerNode(size: CGSize(width: 200, height: 30))
+    let heroNode = HeroNode()
     
     override init(size: CGSize) {
         
@@ -67,16 +71,20 @@ class PuzzleScene: SKScene {
         //Set origin point for orbs and tiles
         let layerPosition = CGPoint(
             x: -tileWidth*3,
-            y: -(screenHeight / 2 - 10))
+            y: -screenHeight/4)//-(screenHeight / 2 - 10))
         //Add child layers to parents
         addChild(gameLayer)
         level.puzzleNode.position = layerPosition
         gameLayer.addChild(level.puzzleNode)
+        
+        //  Configure hero hud node
+        heroNode.position = CGPoint(x: 0, y: -330)
+        gameLayer.addChild(heroNode)
     }
     
     private func configureTimerBar() {
         moveTimer.delegate = self
-        moveTimer.position = CGPoint(x: 0, y: 0)
+        moveTimer.position = CGPoint(x: -100, y: 120)
         gameLayer.addChild(moveTimer)
     }
     
@@ -86,11 +94,16 @@ class PuzzleScene: SKScene {
             y: CGFloat(row) * tileHeight + tileHeight / 2)
     }
     
-    func load(enemy: Enemy) {
-        enemyNode = EnemyNode(enemy: enemy)
-        addChild(enemyNode)
-        let yPosition = screenHeight / 2 - enemyNode.sprite.size.height / 2 - 50
-        enemyNode.position = CGPoint(x: 0, y: yPosition)
+    func load(stages: [Stage]) {
+        self.stages = stages
+        load(stage: stages[currentStageIndex])
+    }
+    
+    func load(stage: Stage) {
+        stageNode = StageNode(stage: stage)
+        addChild(stageNode)
+        let yPosition = screenHeight / 2 - stageNode.sprite.size.height / 2 - 50
+        stageNode.position = CGPoint(x: 0, y: yPosition)
     }
     
     //Touches methods
@@ -172,6 +185,15 @@ class PuzzleScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isSwiping {
+            //  Check if item pressed
+            if !didActivateTurn,
+               let column = swipedOrbs.first?.column,
+               let row = swipedOrbs.first?.row,
+               let orb = level.orb(atColumn: column, row: row) {
+                if orb.element == .Item {
+                    itemPressed(column: column, row: row)
+                }
+            }
             endMove()
         }
     }
@@ -216,21 +238,36 @@ class PuzzleScene: SKScene {
         }
     }
     
+    func itemPressed(column: Int, row: Int) {
+        let alert = UIAlertController(title: "Buy Item?", message: "Would you like to buy item for 3 coins", preferredStyle: .alert)
+        let acceptAction = UIAlertAction(title: "Buy", style: .default) { (_) in
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(acceptAction)
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
     func handleMatches() {
         
-        var damage: Int = 0
+        var matchedChains = [Chain]()
+        
+        //  Recursive function that removes matches, refills, and continues until no new matches
         
         func removeMatches(_ chains: Set<Chain>) {
             level.removeMatches(chains)
             animateMatchedOrbs(for: chains) {
                 let columns = self.level.fillHoles()
                 self.animateFallingOrbs(in: columns, completion: {
-                    let columns = self.level.topUpOrbs()
+                    let columns = self.level.topUpOrbs(itemChance: 5)
                     self.animateNewOrbs(in: columns, completion: {
                         if let newChains = self.level.detectMatches() {
-                            damage += self.damageResolver.calculateDamage(from: Array(newChains))
+                            matchedChains.append(contentsOf: Array(chains))
                             removeMatches(newChains)
                         } else {
+                            let damage = self.damageResolver.calculateDamage(from: matchedChains)
                             self.resolveCombos(damage: damage)
                             self.didResolveTurn()
                         }
@@ -238,8 +275,9 @@ class PuzzleScene: SKScene {
                 })
             }
         }
+        
         if let chains = level.detectMatches() {
-            damage += damageResolver.calculateDamage(from: Array(chains))
+            matchedChains.append(contentsOf: Array(chains))
             removeMatches(chains)
         } else if didActivateTurn {
             self.didActivateTurn = false
@@ -247,12 +285,11 @@ class PuzzleScene: SKScene {
         } else {
             self.isUserInteractionEnabled = true
         }
+        
     }
     
     private func didResolveTurn() {
-        enemyNode.incrementAttack {
-            print(self.enemyNode.activeAttack)
-            print(self.enemyNode.turnCounter)
+        stageNode.incrementAttack {
             self.isUserInteractionEnabled = true
         }
     }
@@ -370,12 +407,17 @@ class PuzzleScene: SKScene {
     
     func resolveCombos(damage: Int) {
         comboCount = 0
-        enemyNode.applyDamage(damage)
+        let stageCompleted = stageNode.applyDamage(damage)
+        if stageCompleted {
+            currentStageIndex += 1
+            stageNode.removeFromParent()
+            load(stage: stages[currentStageIndex])
+        }
     }
 
 }
 
-extension PuzzleScene: TimerDelegate {
+extension GameScene: TimerDelegate {
     
     func timerDidEnd() {
         if self.isSwiping == true {

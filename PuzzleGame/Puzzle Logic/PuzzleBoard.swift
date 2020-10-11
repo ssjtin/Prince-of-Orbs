@@ -12,7 +12,7 @@ import SpriteKit
 let numColumns = 6
 let numRows = 5
 
-class Level {
+class PuzzleBoard {
     
     let puzzleNode = SKNode()
     let tilesLayer = SKNode()
@@ -116,7 +116,7 @@ class Level {
         for row in 0..<numRows {
             var column = 0
             while column < numColumns-2 {
-                if let orb = orbs[column, row] {
+                if let orb = orbs[column, row], orb.element != .Item {
                     let matchType = orb.element
                     
                     if orbs[column + 1, row]?.element == matchType &&
@@ -145,7 +145,7 @@ class Level {
         for column in 0..<numColumns {
             var row = 0
             while row < numRows-2 {
-                if let orb = orbs[column, row] {
+                if let orb = orbs[column, row], orb.element != .Item {
                     let matchType = orb.element
                     
                     if orbs[column, row + 1]?.element == matchType &&
@@ -209,7 +209,7 @@ class Level {
         return columns
     }
     
-    func topUpOrbs() -> [[Orb]] {
+    func topUpOrbs(itemChance: Int = 0) -> [[Orb]] {
         var columns: [[Orb]] = []
         
         for column in 0..<numColumns {
@@ -217,7 +217,7 @@ class Level {
             
             var row = numRows-1
             while row >= 0 && orbs[column, row] == nil {
-                let element = Element.randomElement()
+                let element = Element.randomElement(itemChance: itemChance)
                 
                 let orb = Orb(column: column, row: row, element: element)
                 orbs[column, row] = orb

@@ -6,13 +6,18 @@
 //  Copyright © 2019 Hoang Luong. All rights reserved.
 //
 
+/*
+    Item chance: 0...100 represents percentage chance a falling orb is an item.
+ */
+
+
 import SpriteKit
 
 enum Element: Int, CaseIterable {
-    case unknown = 0, Fire, Water, Grass, Light, Dark, Heal
+    case unknown = 0, Fire, Water, Grass, Light, Dark, Coin, Item
     
     static var allCases: [Element] {
-        return [.unknown, .Fire, .Water, .Grass, .Light, .Dark, .Heal]
+        return [.unknown, .Fire, .Water, .Grass, .Light, .Dark, .Coin, .Item]
     }
     var spriteName: String {
         let spriteNames = [
@@ -21,12 +26,19 @@ enum Element: Int, CaseIterable {
             "green_orb",
             "light_orb",
             "dark_orb",
-            "heart_orb"]
+            "coin_orb",
+            "item_orb"
+        ]
         
         return spriteNames[rawValue - 1]
     }
     
-    static func randomElement() -> Element {
+    static func randomElement(itemChance: Int = 0) -> Element {
+        
+        if Int(arc4random_uniform(99)) < itemChance {
+            return Element.Item
+        }
+        
         return Element(rawValue: Int(arc4random_uniform(6)) + 1)!
     }
     

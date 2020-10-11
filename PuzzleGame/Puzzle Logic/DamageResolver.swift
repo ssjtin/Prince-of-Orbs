@@ -8,7 +8,7 @@
 
 class DamageResolver {
     
-    var baseStrength: Float = 5
+    var attackMultiplier: Float = 1.0
     
     var prongCount: Float = 0
     
@@ -24,19 +24,23 @@ class DamageResolver {
         
         var damage: Float = 0
         
+        var turnMultiplier = attackMultiplier
+        
         for chain in chains {
-            damage += (1 + Float(chain.numExtraOrbs) * 0.2) * baseStrength
+            damage += (1 + Float(chain.numExtraOrbs) * 0.2)
             chain.chainType == .TPA ? prongCount += 1 : ()
         }
         
-        if prongCount > 0 {
-            [1...prongCount].forEach { (_) in
-                damage *= 1.2
-            }
-        }
+        turnMultiplier += prongCount * 0.25
+        turnMultiplier += Float(chains.count) * 0.10
         
+        damage *= turnMultiplier
+        
+        //  Reset prongCount
+        prongCount = 0
+        
+        print(damage)
         return Int(damage)
-        
     }
 
 }
