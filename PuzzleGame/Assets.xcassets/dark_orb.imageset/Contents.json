@@ -1,8 +1,8 @@
 {
   "images" : [
     {
+      "filename" : "dark_orb.png",
       "idiom" : "universal",
-      "filename" : "ezgif.com-crop (5).png",
       "scale" : "1x"
     },
     {
@@ -15,7 +15,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

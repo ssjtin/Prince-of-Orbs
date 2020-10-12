@@ -10,16 +10,28 @@ import SpriteKit
 
 class ItemNode: SKSpriteNode {
     
-    var itemBelt = SKSpriteNode(imageNamed: "itembelt")
+    var itemLimit: Int = 3
     
-    override init() {
-        
-        super.init()
-        
-        addChild(itemBelt)
+    override init(texture: SKTexture?, color: SKColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+    }
+    
+    convenience init(size: CGSize) {
+        self.init(texture: SKTexture(imageNamed: "itembelt"), color: UIColor.white, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addItemSprites(_ items: [Item]) {
+        removeAllChildren()
+        for (index, item) in items.enumerated() {
+            let itemSprite = SKSpriteNode(imageNamed: item.imageName)
+            let width = self.frame.width / 3
+            itemSprite.size = CGSize(width: width, height: width)
+            itemSprite.position = CGPoint(x: (index - 1) * Int(width), y: 0)
+            addChild(itemSprite)
+        }
     }
 }

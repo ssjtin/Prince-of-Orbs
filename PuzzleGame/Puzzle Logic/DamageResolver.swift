@@ -39,7 +39,6 @@ class DamageResolver {
         //  Reset prongCount
         prongCount = 0
         
-        print(damage)
         return Int(damage)
     }
 

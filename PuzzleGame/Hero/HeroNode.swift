@@ -12,25 +12,27 @@ class HeroNode: SKNode {
     
     var heroSprite: SKSpriteNode
     var backgroundSprite: SKSpriteNode
-    var itemSprite: SKSpriteNode
-    var specialBar: SKSpriteNode
+    var itemNode: ItemNode
     var coinLabel: SKLabelNode
     
     var coinCount = 5 {
         didSet {
-            self.coinLabel.text = "\(self.coinCount) coins"
+            self.coinLabel.text = "$\(self.coinCount)"
         }
     }
     
-    var items = [Item]()
+    var items = [Item]() {
+        didSet {
+            itemNode.addItemSprites(items)
+        }
+    }
 
     override init() {
         heroSprite = SKSpriteNode(imageNamed: "bluetrainer")
         backgroundSprite = SKSpriteNode()
         backgroundSprite.color = .white
-        itemSprite = SKSpriteNode(imageNamed: "itembelt")
-        specialBar = SKSpriteNode(imageNamed: "special_bar")
-        coinLabel = SKLabelNode(text: "5 coins")
+        coinLabel = SKLabelNode(text: "$5")
+        itemNode = ItemNode(size: CGSize(width: 150, height: 50))
         
         super.init()
         
@@ -41,20 +43,15 @@ class HeroNode: SKNode {
         heroSprite.position = CGPoint(x: -130, y: 0)
         heroSprite.zPosition = 1
         
-        itemSprite.size = CGSize(width: 180, height: 60)
-        itemSprite.position = CGPoint(x: 20, y: 50)
-        itemSprite.zPosition = 1
-        
-        specialBar.size = CGSize(width: 250, height: 80)
-        specialBar.position = CGPoint(x: 50, y: -50)
+        itemNode.position = CGPoint(x: 20, y: 50)
+        itemNode.zPosition = 1
         
         coinLabel.position = CGPoint(x: 150, y: 70)
         coinLabel.fontColor = .black
         
         addChild(heroSprite)
         addChild(backgroundSprite)
-        addChild(itemSprite)
-        addChild(specialBar)
+        addChild(itemNode)
         addChild(coinLabel)
     }
     
