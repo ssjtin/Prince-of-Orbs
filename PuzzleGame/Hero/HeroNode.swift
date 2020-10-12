@@ -59,4 +59,17 @@ class HeroNode: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let position = touch.location(in: self)
+        let touchedNodes = self.nodes(at: position)
+         
+        if let item = touchedNodes.first(where: { ($0.name ?? "").contains("held_item") } ),
+           let name = item.name,
+           let char = name.last,
+           let index = Int(String(char)) {
+            items.remove(at: index)
+        }
+    }
+    
 }

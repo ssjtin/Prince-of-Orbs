@@ -31,6 +31,7 @@ class ItemNode: SKSpriteNode {
             let width = self.frame.width / 3
             itemSprite.size = CGSize(width: width, height: width)
             itemSprite.position = CGPoint(x: (index - 1) * Int(width), y: 0)
+            itemSprite.name = "held_item_\(index)"
             addChild(itemSprite)
         }
     }

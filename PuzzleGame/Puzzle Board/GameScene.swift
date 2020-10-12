@@ -80,6 +80,7 @@ class GameScene: SKScene {
         
         //  Configure hero hud node
         heroNode.position = CGPoint(x: 0, y: -330)
+        heroNode.isUserInteractionEnabled = true
         gameLayer.addChild(heroNode)
     }
     
