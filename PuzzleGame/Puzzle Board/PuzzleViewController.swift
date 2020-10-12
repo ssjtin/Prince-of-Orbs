@@ -21,6 +21,7 @@ class PuzzleViewController: UIViewController {
         let scene = GameScene(size: skView.frame.size)
         
         let stages = readStagesFromList()
+        print(stages)
         scene.load(stages: stages)
         
         skView.presentScene(scene)

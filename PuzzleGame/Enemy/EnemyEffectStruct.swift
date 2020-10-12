@@ -13,6 +13,7 @@ enum EffectType: String {
     case strongAbsorb        //  Absorb attacks over amount
     case timeReduce
     case freeze               //  Freeze column
+    case comboAbsorb
     
     var effectImage: UIImage? {
         return UIImage(named: "icon_" + self.rawValue)
@@ -29,12 +30,14 @@ struct EnemyAttack: Decodable {
     let value: Int?
     let element: Element?
     let side: Side?
+    let chance: Int
     
     enum CodingKeys: String, CodingKey {
         case type
         case value
         case element
         case side
+        case chance
     }
     
     init(from decoder: Decoder) throws {
@@ -52,6 +55,12 @@ struct EnemyAttack: Decodable {
             side = Side(rawValue: sideString)
         } else {
             side = nil
+        }
+        
+        if let chance = try? values.decodeIfPresent(Int.self, forKey: .chance) {
+            self.chance = chance
+        } else {
+            chance = 0
         }
     }
     

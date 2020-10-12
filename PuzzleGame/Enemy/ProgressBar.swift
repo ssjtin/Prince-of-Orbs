@@ -12,7 +12,7 @@ class ProgressBar: SKSpriteNode {
     
     var isActive: Bool = false
     
-    var mainBar = SKSpriteNode(imageNamed: "bar_100")
+    var mainBar = SKSpriteNode(imageNamed: "progress_0")
     
     var length: CGFloat {
         self.size.width
@@ -47,7 +47,27 @@ class ProgressBar: SKSpriteNode {
     
     func adjustScore(by amount: Int) {
         self.currentScore = max(min(targetScore, currentScore + amount), 0)
-        let proportion = CGFloat(currentScore) / CGFloat(targetScore)
+        let percentage = CGFloat(currentScore) / CGFloat(targetScore) * 100
+        switch percentage {
+        case let x  where x < 5:
+            mainBar.texture = SKTexture(imageNamed: "progress_0")
+        case let x where x < 15:
+            mainBar.texture = SKTexture(imageNamed: "progress_10")
+        case let x where x < 25:
+            mainBar.texture = SKTexture(imageNamed: "progress_20")
+        case let x where x < 35:
+            mainBar.texture = SKTexture(imageNamed: "progress_30")
+        case let x where x < 45:
+            mainBar.texture = SKTexture(imageNamed: "progress_40")
+        case let x where x < 55:
+            mainBar.texture = SKTexture(imageNamed: "progress_50")
+        case let x where x < 75:
+            mainBar.texture = SKTexture(imageNamed: "progress_70")
+        case let x where x < 95:
+            mainBar.texture = SKTexture(imageNamed: "progress_90")
+        default:
+            mainBar.texture = SKTexture(imageNamed: "progress_100")
+        }
     }
 
 }
