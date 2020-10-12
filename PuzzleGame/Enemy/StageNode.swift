@@ -14,7 +14,6 @@ import SpriteKit
 
 class StageNode: SKNode {
     
-    var backgroundSprite: SKSpriteNode
     var sprite: SKSpriteNode
     var attackIconNode: SKSpriteNode
     var countdownLabel: SKLabelNode
@@ -25,7 +24,7 @@ class StageNode: SKNode {
     
     var turnCounter: Int {
         didSet {
-            countdownLabel.text = "\(self.turnCounter) turns"
+            countdownLabel.text = "\(self.turnCounter)"
         }
     }
     
@@ -33,21 +32,18 @@ class StageNode: SKNode {
         self.stage = stage
         
         sprite = SKSpriteNode(imageNamed: stage.imageName)
-        sprite.size = CGSize(width: 200, height: 200)
-        
-        backgroundSprite = SKSpriteNode(imageNamed: "aura")
-        backgroundSprite.size = CGSize(width: 300, height: 300)
+        sprite.size = CGSize(width: 275, height: 200)
         
         attackIconNode = SKSpriteNode()
         attackIconNode.size = CGSize(width: 40, height: 40)
         
         //  Init countdown label
-        countdownLabel = SKLabelNode(text: "\(stage.counter) turns")
-        countdownLabel.position = CGPoint(x: 140, y: 80)
+        countdownLabel = SKLabelNode(text: "\(stage.counter)")
+        countdownLabel.position = CGPoint(x: 160, y: 80)
         countdownLabel.fontColor = .black
         
         //  Init enemy health bar
-        progressBar = ProgressBar(size: CGSize(width: 300, height: 20), targetScore: stage.targetScore)
+        progressBar = ProgressBar(size: CGSize(width: 300, height: 50), targetScore: stage.targetScore)
         progressBar.zPosition = 1
         progressBar.position = CGPoint(x: 0, y: -120)
         
@@ -61,7 +57,6 @@ class StageNode: SKNode {
         addChild(progressBar)
         addChild(countdownLabel)
         addChild(sprite)
-        addChild(backgroundSprite)
         addChild(attackIconNode)
         
         attackIconNode.position = CGPoint(x: 0, y: -200)

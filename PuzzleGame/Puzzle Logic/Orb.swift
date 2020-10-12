@@ -68,11 +68,24 @@ class Orb: CustomStringConvertible, Hashable, Comparable {
     var row: Int
     let element: Element
     var sprite: SKSpriteNode?
+    var item: Item?
+    
+    var spriteName: String {
+        if let item = item {
+            return item.imageName
+        } else {
+            return element.spriteName
+        }
+    }
     
     init(column: Int, row: Int, element: Element) {
         self.column = column
         self.row = row
         self.element = element
+        
+        if element == .Item {
+            self.item = Item.random()
+        }
     }
     
 }

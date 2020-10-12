@@ -25,6 +25,9 @@
 		8E1912592531ADAF00F99DC5 /* EnemyEffectStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1912582531ADAF00F99DC5 /* EnemyEffectStruct.swift */; };
 		8E19125F2531AFF600F99DC5 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19125E2531AFF500F99DC5 /* ProgressBar.swift */; };
 		8E1912622531B51500F99DC5 /* HeroNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1912612531B51500F99DC5 /* HeroNode.swift */; };
+		8E40EFDB2533153B00ED138D /* ItemStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EFDA2533153B00ED138D /* ItemStruct.swift */; };
+		8E40EFE0253355C600ED138D /* GameScene+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EFDF253355C600ED138D /* GameScene+Animations.swift */; };
+		8E40EFE325335C0700ED138D /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EFE225335C0700ED138D /* ItemNode.swift */; };
 		8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */; };
 		8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */; };
 		8EDC22FA23CA8F7A007BDE84 /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */; };
@@ -65,6 +68,9 @@
 		8E1912582531ADAF00F99DC5 /* EnemyEffectStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEffectStruct.swift; sourceTree = "<group>"; };
 		8E19125E2531AFF500F99DC5 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		8E1912612531B51500F99DC5 /* HeroNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNode.swift; sourceTree = "<group>"; };
+		8E40EFDA2533153B00ED138D /* ItemStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStruct.swift; sourceTree = "<group>"; };
+		8E40EFDF253355C600ED138D /* GameScene+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Animations.swift"; sourceTree = "<group>"; };
+		8E40EFE225335C0700ED138D /* ItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
 		8EDC22F223CA8F7A007BDE84 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 				8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */,
 				8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */,
 				8EDC230F23CA974A007BDE84 /* GameScene.swift */,
+				8E40EFDF253355C600ED138D /* GameScene+Animations.swift */,
 				8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */,
 			);
 			path = "Puzzle Board";
@@ -172,6 +179,15 @@
 			path = Hero;
 			sourceTree = "<group>";
 		};
+		8E40EFDD2533154100ED138D /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				8E40EFDA2533153B00ED138D /* ItemStruct.swift */,
+				8E40EFE225335C0700ED138D /* ItemNode.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 		8EDC22E923CA8F7A007BDE84 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +210,7 @@
 				8EDC232F23CA9A75007BDE84 /* Constants.swift */,
 				8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */,
 				8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */,
+				8E40EFDD2533154100ED138D /* Item */,
 				8E1912642531B51F00F99DC5 /* Hero */,
 				8E19125B2531AF5700F99DC5 /* Enemy */,
 				8E0F5AA723DEF1700019D541 /* Puzzle Board */,
@@ -296,6 +313,7 @@
 			files = (
 				8EDC5FFC23E57B16002A671F /* MoveTimerNode.swift in Sources */,
 				8E19125F2531AFF600F99DC5 /* ProgressBar.swift in Sources */,
+				8E40EFE325335C0700ED138D /* ItemNode.swift in Sources */,
 				8EDC22FA23CA8F7A007BDE84 /* PuzzleViewController.swift in Sources */,
 				8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */,
 				8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */,
@@ -309,10 +327,12 @@
 				8EDC600623E9851D002A671F /* DamageResolver.swift in Sources */,
 				8E1912592531ADAF00F99DC5 /* EnemyEffectStruct.swift in Sources */,
 				8EDC230E23CA9461007BDE84 /* PuzzleBoard.swift in Sources */,
+				8E40EFE0253355C600ED138D /* GameScene+Animations.swift in Sources */,
 				8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */,
 				8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */,
 				8EDC232E23CA98E9007BDE84 /* Swap.swift in Sources */,
 				8E1912562531AD0300F99DC5 /* StageStruct.swift in Sources */,
+				8E40EFDB2533153B00ED138D /* ItemStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

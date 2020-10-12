@@ -62,7 +62,8 @@ class GameScene: SKScene {
     }
     
     private func setBackgroundImage() {
-        let background = SKSpriteNode(imageNamed: "background")
+        let background = SKSpriteNode()
+        background.color = .white
         background.size = CGSize(width: screenWidth * 2, height: screenHeight)
         addChild(background)
     }
@@ -88,7 +89,7 @@ class GameScene: SKScene {
         gameLayer.addChild(moveTimer)
     }
     
-    private func pointFor(column: Int, row: Int) -> CGPoint {
+    func pointFor(column: Int, row: Int) -> CGPoint {
         return CGPoint(
             x: CGFloat(column) * tileWidth + tileWidth / 2,
             y: CGFloat(row) * tileHeight + tileHeight / 2)
@@ -132,7 +133,7 @@ class GameScene: SKScene {
                 initialOrb = orb.sprite
                 initialOrb?.alpha = 0
                 swipedOrbs.append((column, row))
-                activeOrb = SKSpriteNode(imageNamed: orb.element.spriteName)
+                activeOrb = SKSpriteNode(imageNamed: orb.spriteName)
                 activeOrb?.size = CGSize(width: 65, height: 65)
                 level.orbsLayer.addChild(activeOrb!)
                 activeOrb?.position = location
@@ -186,14 +187,6 @@ class GameScene: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isSwiping {
             //  Check if item pressed
-            if !didActivateTurn,
-               let column = swipedOrbs.first?.column,
-               let row = swipedOrbs.first?.row,
-               let orb = level.orb(atColumn: column, row: row) {
-                if orb.element == .Item {
-                    itemPressed(column: column, row: row)
-                }
-            }
             endMove()
         }
     }
@@ -210,9 +203,19 @@ class GameScene: SKScene {
         initialOrb?.alpha = 1
         initialOrb = nil
         isSwiping = false
-        moveTimer.cancelTimer()
-        isUserInteractionEnabled = false
-        handleMatches()
+        if didActivateTurn {
+            moveTimer.cancelTimer()
+            isUserInteractionEnabled = false
+            handleMatches()
+        } else {
+            if let column = swipedOrbs.first?.column,
+               let row = swipedOrbs.first?.row,
+               let orb = level.orb(atColumn: column, row: row) {
+                if orb.element == .Item {
+                    itemPressed(column: column, row: row)
+                }
+            }
+        }
     }
     
     func trySwap() {
@@ -239,15 +242,31 @@ class GameScene: SKScene {
     }
     
     func itemPressed(column: Int, row: Int) {
-        let alert = UIAlertController(title: "Buy Item?", message: "Would you like to buy item for 3 coins", preferredStyle: .alert)
-        let acceptAction = UIAlertAction(title: "Buy", style: .default) { (_) in
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        guard let pressedOrb = level.orb(atColumn: column, row: row), let item = pressedOrb.item else { return }
         
-        alert.addAction(cancelAction)
-        alert.addAction(acceptAction)
-        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        if item.cost <= heroNode.coinCount {
+            //  Can afford to buy item
+            
+            let alert = UIAlertController(title: "Buy Item?", message: "Would you like to buy item for \(item.cost) coins", preferredStyle: .alert)
+            let acceptAction = UIAlertAction(title: "Buy", style: .default) { (_) in
+                self.heroNode.items.append(item)
+                self.level.replaceOrb(at: column, row: row)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(cancelAction)
+            alert.addAction(acceptAction)
+            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        } else {
+            //  Can't afford to buy item
+            let alert = UIAlertController(title: "Not enough coins", message: "Please collect more coins to buy this item.", preferredStyle: .alert)
+
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alert.addAction(cancelAction)
+            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     func handleMatches() {
@@ -261,14 +280,17 @@ class GameScene: SKScene {
             animateMatchedOrbs(for: chains) {
                 let columns = self.level.fillHoles()
                 self.animateFallingOrbs(in: columns, completion: {
-                    let columns = self.level.topUpOrbs(itemChance: 5)
+                    let columns = self.level.topUpOrbs(itemChance: 12)
                     self.animateNewOrbs(in: columns, completion: {
                         if let newChains = self.level.detectMatches() {
                             matchedChains.append(contentsOf: Array(chains))
                             removeMatches(newChains)
                         } else {
+                            let coinChains = matchedChains.filter { $0.element == .Coin }.count
+                            self.heroNode.coinCount += coinChains
                             let damage = self.damageResolver.calculateDamage(from: matchedChains)
                             self.resolveCombos(damage: damage)
+                            self.didActivateTurn = false
                             self.didResolveTurn()
                         }
                     })
@@ -293,118 +315,7 @@ class GameScene: SKScene {
             self.isUserInteractionEnabled = true
         }
     }
-    
-    //Mark: ANIMATIONS
-    
-    func animate(_ swap: Swap, completion: @escaping () -> Void) {
-        let spriteA = swap.orbA.sprite!
-        let spriteB = swap.orbB.sprite!
-        
-        spriteA.zPosition = 100
-        spriteB.zPosition = 90
-        
-        let duration: TimeInterval = 0.01
-        
-        let moveA = SKAction.move(to: spriteB.position, duration: duration)
-        moveA.timingMode = .easeOut
-        spriteA.run(moveA, completion: completion)
-        
-        let moveB = SKAction.move(to: spriteA.position, duration: duration)
-        moveB.timingMode = .easeOut
-        spriteB.run(moveB)
-        
-        run(gameSound.orbMovementSound)
-    }
-    
-    func animateMatchedOrbs(for chains: Set<Chain>, completion: @escaping () -> ()) {
-        let sorted = (Array(chains)).sorted()
-        
-        let duration: TimeInterval = 0.3
-        
-        for (index, chain) in sorted.enumerated() {
-            
-            let waitForSoundAction = SKAction.wait(forDuration: duration * Double(index))
-            comboCount += 1
-            comboChains.append(contentsOf: chains)
-            let soundAction = chain.orbs.count == 4 ? gameSound.TPASound : gameSound.comboSound(for: comboCount)
-            run(SKAction.sequence([waitForSoundAction, soundAction]))
-            
-            for orb in chain.orbs {
-                if let sprite = orb.sprite {
-                    if sprite.action(forKey: "removing") == nil {
-                        //Shrink orbs in chain
-                        let scaleAction = SKAction.scale(to: 0.1, duration: duration)
-                        scaleAction.timingMode = .easeOut
-                        //Wait according to combo sequence before starting animation
-                        let waitAction = SKAction.wait(forDuration: duration * Double(index))
-                        sprite.run(SKAction.sequence([waitAction, scaleAction, SKAction.removeFromParent()]), withKey: "removing")
-                    }
-                }
-            }
-        }
-        run(SKAction.wait(forDuration: duration * Double(sorted.count)), completion: completion)
-    }
-    
-    func animateFallingOrbs(in columns: [[Orb]], completion: @escaping () -> ()) {
-        var longestDuration: TimeInterval = 0
-        let delay = TimeInterval(0.5)
-        for array in columns {
-            for (_, orb) in array.enumerated() {
-                let newPosition = pointFor(column: orb.column, row: orb.row)
-                
-                let sprite = orb.sprite!
-                let duration = TimeInterval(((sprite.position.y - newPosition.y) / tileHeight) * 0.1)
-                longestDuration = duration
-                
-                let moveAction = SKAction.move(to: newPosition, duration: duration)
-                moveAction.timingMode = .easeOut
-                sprite.run(
-                    SKAction.sequence([
-                        SKAction.wait(forDuration: delay),
-                        SKAction.group([moveAction])]))
-            }
-        }
-        run(SKAction.wait(forDuration: delay+longestDuration), completion: completion)
-    }
-    
-    func animateNewOrbs(in columns: [[Orb]], completion: @escaping () -> Void) {
-        // 1
-        var longestDuration: TimeInterval = 0
-        
-        for array in columns {
-            // 2
-            let startRow = array[0].row + 1
-            
-            for (index, orb) in array.enumerated() {
-                // 3
-                let sprite = SKSpriteNode(imageNamed: orb.element.spriteName)
-                sprite.size = CGSize(width: tileWidth, height: tileHeight)
-                sprite.position = pointFor(column: orb.column, row: startRow)
-                level.orbsLayer.addChild(sprite)
-                orb.sprite = sprite
-                // 4
-                let delay = 0.1 + 0.2 * TimeInterval(array.count - index - 1)
-                // 5
-                let duration = TimeInterval(startRow - orb.row) * 0.1
-                longestDuration = max(longestDuration, duration + delay)
-                // 6
-                let newPosition = pointFor(column: orb.column, row: orb.row)
-                let moveAction = SKAction.move(to: newPosition, duration: duration)
-                moveAction.timingMode = .easeOut
-                sprite.alpha = 0
-                sprite.run(
-                    SKAction.sequence([
-                        SKAction.wait(forDuration: delay),
-                        SKAction.group([
-                            SKAction.fadeIn(withDuration: 0.05),
-                            moveAction,])
-                        ]))
-            }
-        }
-        // 7
-        run(SKAction.wait(forDuration: longestDuration), completion: completion)
-    }
-    
+
     func resolveCombos(damage: Int) {
         comboCount = 0
         let stageCompleted = stageNode.applyDamage(damage)

@@ -10,9 +10,9 @@
 		<key>targetScore</key>
 		<integer>10</integer>
 		<key>imageName</key>
-		<string>mewtwo</string>
+		<string>toilet</string>
 		<key>name</key>
-		<string>mewtwo</string>
+		<string>toilet_encounter</string>
 	</dict>
 	<dict>
 		<key>counter</key>

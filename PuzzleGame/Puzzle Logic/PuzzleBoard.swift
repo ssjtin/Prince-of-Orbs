@@ -47,19 +47,22 @@ class PuzzleBoard {
                 } else {
                     tile.alpha = 0.5
                 }
-                
             }
         }
     }
     
     func addSprites(for orbs: Set<Orb>) {
         for orb in orbs {
-            let sprite = SKSpriteNode(imageNamed: orb.element.spriteName)
-            sprite.size = CGSize(width: tileWidth, height: tileHeight)
-            sprite.position = pointFor(column: orb.column, row: orb.row)
-            orbsLayer.addChild(sprite)
-            orb.sprite = sprite
+            addSprite(for: orb)
         }
+    }
+    
+    func addSprite(for orb: Orb) {
+        let sprite = SKSpriteNode(imageNamed: orb.spriteName)
+        sprite.size = CGSize(width: tileWidth, height: tileHeight)
+        sprite.position = pointFor(column: orb.column, row: orb.row)
+        orbsLayer.addChild(sprite)
+        orb.sprite = sprite
     }
     
     func orb(atColumn column: Int, row: Int) -> Orb? {
@@ -230,6 +233,15 @@ class PuzzleBoard {
             }
         }
         return columns
+    }
+    
+    func replaceOrb(at column: Int, row: Int) {
+        let newOrb = Orb(column: column, row: row, element: .randomElement(itemChance: 0))
+        orbs[column, row]?.sprite?.removeFromParent()
+        orbs[column, row] = nil
+        orbs[column, row] = newOrb
+        
+        addSprite(for: newOrb)
     }
     
 }

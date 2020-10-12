@@ -32,6 +32,7 @@ class MoveTimerNode: SKSpriteNode {
         mainBar.zPosition = 10
         mainBar.position = CGPoint(x: -size.width/2, y: 0)
         addChild(mainBar)
+        mainBar.isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {
