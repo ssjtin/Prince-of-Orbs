@@ -31,6 +31,8 @@ struct EnemyAttack: Decodable {
     let element: Element?
     let side: Side?
     let chance: Int
+    let description: String
+    let iconName: String?
     
     enum CodingKeys: String, CodingKey {
         case type
@@ -38,6 +40,8 @@ struct EnemyAttack: Decodable {
         case element
         case side
         case chance
+        case description
+        case iconName
     }
     
     init(from decoder: Decoder) throws {
@@ -62,6 +66,19 @@ struct EnemyAttack: Decodable {
         } else {
             chance = 0
         }
+        
+        if let description = try? values.decode(String.self, forKey: .description) {
+            self.description = description
+        } else {
+            self.description = ""
+        }
+        
+        if let iconName = try? values.decodeIfPresent(String.self, forKey: .iconName) {
+            self.iconName = iconName
+        } else {
+            self.iconName = nil
+        }
+        
     }
     
 }

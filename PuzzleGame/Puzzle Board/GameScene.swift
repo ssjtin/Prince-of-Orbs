@@ -106,6 +106,7 @@ class GameScene: SKScene {
         addChild(stageNode)
         let yPosition = screenHeight / 2 - stageNode.sprite.size.height / 2 - 50
         stageNode.position = CGPoint(x: 0, y: yPosition)
+        stageNode.isUserInteractionEnabled = true
     }
     
     //Touches methods
@@ -250,7 +251,7 @@ class GameScene: SKScene {
             
             let alert = UIAlertController(title: "Buy Item?", message: "Would you like to buy item for \(item.cost) coins", preferredStyle: .alert)
             let acceptAction = UIAlertAction(title: "Buy", style: .default) { (_) in
-                self.heroNode.items.append(item)
+                self.heroNode.buy(item: item)
                 self.level.replaceOrb(at: column, row: row)
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -289,10 +290,9 @@ class GameScene: SKScene {
                         } else {
                             let coinChains = matchedChains.filter { $0.element == .Coin }.count
                             self.heroNode.coinCount += coinChains
-                            let damage = self.damageResolver.calculateDamage(from: matchedChains)
+                            let damage = self.damageResolver.calculateDamage(from: matchedChains, attack: self.stageNode.activeAttack)
                             self.resolveCombos(damage: damage)
                             self.didActivateTurn = false
-                            self.didResolveTurn()
                         }
                     })
                 })
@@ -324,6 +324,9 @@ class GameScene: SKScene {
             currentStageIndex += 1
             stageNode.removeFromParent()
             load(stage: stages[currentStageIndex])
+            self.isUserInteractionEnabled = true
+        } else {
+            didResolveTurn()
         }
     }
 

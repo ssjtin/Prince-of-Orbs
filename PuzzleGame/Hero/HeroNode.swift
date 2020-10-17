@@ -15,7 +15,7 @@ class HeroNode: SKNode {
     var itemNode: ItemNode
     var coinLabel: SKLabelNode
     
-    var coinCount = 5 {
+    var coinCount = 0 {
         didSet {
             self.coinLabel.text = "$\(self.coinCount)"
         }
@@ -31,7 +31,7 @@ class HeroNode: SKNode {
         heroSprite = SKSpriteNode(imageNamed: "bluetrainer")
         backgroundSprite = SKSpriteNode()
         backgroundSprite.color = .white
-        coinLabel = SKLabelNode(text: "$5")
+        coinLabel = SKLabelNode(text: "$0")
         itemNode = ItemNode(size: CGSize(width: 150, height: 50))
         
         super.init()
@@ -57,6 +57,11 @@ class HeroNode: SKNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func buy(item: Item) {
+        items.append(item)
+        coinCount -= item.cost
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -20,7 +20,7 @@ class DamageResolver {
         }
     }
     
-    func calculateDamage(from chains: [Chain]) -> Int {
+    func calculateDamage(from chains: [Chain], attack: EnemyAttack?) -> Int {
         
         var damage: Float = 0
         
@@ -35,6 +35,16 @@ class DamageResolver {
         turnMultiplier += Float(chains.count) * 0.10
         
         damage *= turnMultiplier
+        
+        if let attack = attack, let value = attack.value {
+            switch attack.type {
+            case .comboAbsorb:
+                if value > chains.count {
+                    damage *= -1
+                }
+            default: ()
+            }
+        }
         
         //  Reset prongCount
         prongCount = 0
