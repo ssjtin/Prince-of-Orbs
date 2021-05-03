@@ -6,18 +6,26 @@
 //  Copyright © 2019 Hoang Luong. All rights reserved.
 //
 
+/*
+ 
+ Scene for the puzzle board and orbs.  Handle all the touches methods, moving orbs, resolving matches.
+ 
+ */
+
 import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class GameScene: SKScene {
+protocol PuzzleBoardDelegate: class {
+    func completedTurn(with matches: [Chain])
+}
+
+class PuzzleBoardScene: SKScene {
     
-    var level = PuzzleBoard()                //Level class controls puzzle orbs
+    weak var puzzleDelegate: PuzzleBoardDelegate?
+    
+    var puzzleBoard = PuzzleBoard()
     let gameSound = GameSound()         //Preload game sounds
-    
-    var stageNode: StageNode!
-    var stages = [Stage]()
-    var currentStageIndex = 0
 
     //Orb handling logic variables
     var swipedOrbs: [(column: Int, row: Int)] = [] {
@@ -34,25 +42,21 @@ class GameScene: SKScene {
     var activeOrb: SKSpriteNode?
     var initialOrb: SKSpriteNode?
     
-    //Combo variables
+    //  Combo variables
     var comboCount: Int = 0
     var comboChains: [Chain] = []
+
     
-    var damageResolver = DamageResolver()
-    
-    //Scene layers
+    //  Scene layers
     let gameLayer = SKNode()
     let moveTimer = MoveTimerNode(size: CGSize(width: 200, height: 30))
-    let heroNode = HeroNode()
     
     override init(size: CGSize) {
-        
         super.init(size: size)
         //Set scene anchorPoint to centre of screen
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         scaleMode = .aspectFill
         
-        setBackgroundImage()
         configureMainLayers()
         configureTimerBar()
     }
@@ -61,52 +65,24 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setBackgroundImage() {
-        let background = SKSpriteNode()
-        background.color = .white
-        background.size = CGSize(width: screenWidth * 2, height: screenHeight)
-        addChild(background)
-    }
-    
     private func configureMainLayers() {
-        //Set origin point for orbs and tiles
-        let layerPosition = CGPoint(
-            x: -tileWidth*3,
-            y: -screenHeight/4)//-(screenHeight / 2 - 10))
         //Add child layers to parents
         addChild(gameLayer)
-        level.puzzleNode.position = layerPosition
-        gameLayer.addChild(level.puzzleNode)
-        
-        //  Configure hero hud node
-        heroNode.position = CGPoint(x: 0, y: -330)
-        heroNode.isUserInteractionEnabled = true
-        gameLayer.addChild(heroNode)
+        gameLayer.addChild(puzzleBoard.puzzleNode)
+        gameLayer.position = CGPoint(x: -150, y: -150)
     }
     
     private func configureTimerBar() {
+        addChild(moveTimer)
         moveTimer.delegate = self
-        moveTimer.position = CGPoint(x: -100, y: 120)
-        gameLayer.addChild(moveTimer)
+        moveTimer.position = CGPoint(x: 0, y: 125)
+        moveTimer.zPosition = 10
     }
     
     func pointFor(column: Int, row: Int) -> CGPoint {
         return CGPoint(
             x: CGFloat(column) * tileWidth + tileWidth / 2,
             y: CGFloat(row) * tileHeight + tileHeight / 2)
-    }
-    
-    func load(stages: [Stage]) {
-        self.stages = stages
-        load(stage: stages[currentStageIndex])
-    }
-    
-    func load(stage: Stage) {
-        stageNode = StageNode(stage: stage)
-        addChild(stageNode)
-        let yPosition = screenHeight / 2 - stageNode.sprite.size.height / 2 - 50
-        stageNode.position = CGPoint(x: 0, y: yPosition)
-        stageNode.isUserInteractionEnabled = true
     }
     
     //Touches methods
@@ -120,37 +96,46 @@ class GameScene: SKScene {
         }
     }
     
+    var lastCoordinate: CGPoint?
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
         swipedOrbs.removeAll()
         isSwiping = true
         
-        let location = touch.location(in: level.orbsLayer)
+        let location = touch.location(in: puzzleBoard.orbsLayer)
         
         let (success, column, row) = convertPoint(location)
         
         if success {    //Initial touch successfully mapped to valid orb
-            if let orb = level.orb(atColumn: column, row: row) {
+            if let orb = puzzleBoard.orb(atColumn: column, row: row) {
                 initialOrb = orb.sprite
                 initialOrb?.alpha = 0
                 swipedOrbs.append((column, row))
                 activeOrb = SKSpriteNode(imageNamed: orb.spriteName)
                 activeOrb?.size = CGSize(width: 65, height: 65)
-                level.orbsLayer.addChild(activeOrb!)
+                puzzleBoard.orbsLayer.addChild(activeOrb!)
                 activeOrb?.position = location
+                lastCoordinate = location
             }
         }
         
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         guard isSwiping else { return }
+        
         //Escape if first touch was not a valid orb
         guard let orb = swipedOrbs.last else { return }
         guard let touch = touches.first else { return }
+        guard let lastTouch = lastCoordinate else { return }
         
-        let location = touch.location(in: level.orbsLayer)
+        let location = touch.location(in: puzzleBoard.orbsLayer)
+        
+        guard abs(location.x - lastTouch.x) > 3 || abs(location.y - lastTouch.y) > 3 else { return }
+        
         activeOrb?.position = location
         
         let (success, column, row) = convertPoint(location)
@@ -184,11 +169,11 @@ class GameScene: SKScene {
                 }
             }
         }
+        lastCoordinate = location
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isSwiping {
-            //  Check if item pressed
             endMove()
         }
     }
@@ -205,24 +190,17 @@ class GameScene: SKScene {
         initialOrb?.alpha = 1
         initialOrb = nil
         isSwiping = false
+        lastCoordinate = nil
         if didActivateTurn {
             moveTimer.cancelTimer()
             isUserInteractionEnabled = false
             handleMatches()
-        } else {
-            if let column = swipedOrbs.first?.column,
-               let row = swipedOrbs.first?.row,
-               let orb = level.orb(atColumn: column, row: row) {
-                if orb.element == .Item {
-                    itemPressed(column: column, row: row)
-                }
-            }
         }
     }
     
     func trySwap() {
-        if  let toOrb = level.orb(atColumn: swipedOrbs[1].column, row: swipedOrbs[1].row),
-            let fromOrb = level.orb(atColumn: swipedOrbs[0].column, row: swipedOrbs[0].row) {
+        if  let toOrb = puzzleBoard.orb(atColumn: swipedOrbs[1].column, row: swipedOrbs[1].row),
+            let fromOrb = puzzleBoard.orb(atColumn: swipedOrbs[0].column, row: swipedOrbs[0].row) {
             
             let swap = Swap(orbA: fromOrb, orbB: toOrb)
             handleSwipe(swap)
@@ -234,7 +212,7 @@ class GameScene: SKScene {
     }
     
     func handleSwipe(_ swap: Swap) {
-        level.performSwap(swap)
+        puzzleBoard.performSwap(swap)
         animate(swap) { [unowned self] in
             self.swipedOrbs.remove(at: 0)
             if self.swipedOrbs.count > 1 {
@@ -243,96 +221,50 @@ class GameScene: SKScene {
         }
     }
     
-    func itemPressed(column: Int, row: Int) {
-        guard let pressedOrb = level.orb(atColumn: column, row: row), let item = pressedOrb.item else { return }
-        
-        if item.cost <= heroNode.coinCount {
-            //  Can afford to buy item
-            
-            let alert = UIAlertController(title: "Buy Item?", message: "Would you like to buy item for \(item.cost) coins", preferredStyle: .alert)
-            let acceptAction = UIAlertAction(title: "Buy", style: .default) { (_) in
-                self.heroNode.buy(item: item)
-                self.level.replaceOrb(at: column, row: row)
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alert.addAction(cancelAction)
-            alert.addAction(acceptAction)
-            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
-        } else {
-            //  Can't afford to buy item
-            let alert = UIAlertController(title: "Not enough coins", message: "Please collect more coins to buy this item.", preferredStyle: .alert)
-
-            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            
-            alert.addAction(cancelAction)
-            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
-        }
-        
-    }
-    
     func handleMatches() {
-        
-        var matchedChains = [Chain]()
-        
+
         //  Recursive function that removes matches, refills, and continues until no new matches
         
         func removeMatches(_ chains: Set<Chain>) {
-            level.removeMatches(chains)
+            puzzleBoard.removeMatches(chains)
             animateMatchedOrbs(for: chains) {
-                let columns = self.level.fillHoles()
+                let columns = self.puzzleBoard.fillHoles()
                 self.animateFallingOrbs(in: columns, completion: {
-                    let columns = self.level.topUpOrbs(itemChance: 12)
+                    let columns = self.puzzleBoard.topUpOrbs()
                     self.animateNewOrbs(in: columns, completion: {
-                        if let newChains = self.level.detectMatches() {
-                            matchedChains.append(contentsOf: Array(chains))
+                        if let newChains = self.puzzleBoard.detectMatches() {
+                            self.comboChains.append(contentsOf: newChains)
                             removeMatches(newChains)
                         } else {
-                            let coinChains = matchedChains.filter { $0.element == .Coin }.count
-                            self.heroNode.coinCount += coinChains
-                            let damage = self.damageResolver.calculateDamage(from: matchedChains, attack: self.stageNode.activeAttack)
-                            self.resolveCombos(damage: damage)
-                            self.didActivateTurn = false
+                            self.resolveTurn()
                         }
                     })
                 })
             }
         }
         
-        if let chains = level.detectMatches() {
-            matchedChains.append(contentsOf: Array(chains))
+        if let chains = puzzleBoard.detectMatches() {
+            comboChains.append(contentsOf: chains)
             removeMatches(chains)
         } else if didActivateTurn {
-            self.didActivateTurn = false
-            self.didResolveTurn()
-        } else {
-            self.isUserInteractionEnabled = true
+            resolveTurn()
         }
         
     }
     
-    private func didResolveTurn() {
-        stageNode.incrementAttack {
-            self.isUserInteractionEnabled = true
-        }
-    }
-
-    func resolveCombos(damage: Int) {
+    func resolveTurn() {
+        
+        puzzleDelegate?.completedTurn(with: comboChains)
+        
+        comboChains.removeAll()
         comboCount = 0
-        let stageCompleted = stageNode.applyDamage(damage)
-        if stageCompleted {
-            currentStageIndex += 1
-            stageNode.removeFromParent()
-            load(stage: stages[currentStageIndex])
-            self.isUserInteractionEnabled = true
-        } else {
-            didResolveTurn()
-        }
+        self.didActivateTurn = false
+        self.isUserInteractionEnabled = true
     }
 
 }
 
-extension GameScene: TimerDelegate {
+extension PuzzleBoardScene: TimerDelegate {
     
     func timerDidEnd() {
         if self.isSwiping == true {

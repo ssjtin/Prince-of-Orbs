@@ -80,9 +80,9 @@ class PuzzleBoard {
         
         for row in 0..<numRows {
             for column in 0..<numColumns {
-                var element: Element
+                var element: OrbType
                 repeat {
-                    element = Element.randomElement()
+                    element = OrbType.randomElement()
                 } while (column >= 2 &&
                 orbs[column - 1, row]?.element == element &&
                 orbs[column - 2, row]?.element == element)
@@ -119,7 +119,7 @@ class PuzzleBoard {
         for row in 0..<numRows {
             var column = 0
             while column < numColumns-2 {
-                if let orb = orbs[column, row], orb.element != .Item {
+                if let orb = orbs[column, row] {
                     let matchType = orb.element
                     
                     if orbs[column + 1, row]?.element == matchType &&
@@ -148,7 +148,7 @@ class PuzzleBoard {
         for column in 0..<numColumns {
             var row = 0
             while row < numRows-2 {
-                if let orb = orbs[column, row], orb.element != .Item {
+                if let orb = orbs[column, row] {
                     let matchType = orb.element
                     
                     if orbs[column, row + 1]?.element == matchType &&
@@ -212,7 +212,7 @@ class PuzzleBoard {
         return columns
     }
     
-    func topUpOrbs(itemChance: Int = 0) -> [[Orb]] {
+    func topUpOrbs() -> [[Orb]] {
         var columns: [[Orb]] = []
         
         for column in 0..<numColumns {
@@ -220,7 +220,7 @@ class PuzzleBoard {
             
             var row = numRows-1
             while row >= 0 && orbs[column, row] == nil {
-                let element = Element.randomElement(itemChance: itemChance)
+                let element = OrbType.randomElement()
                 
                 let orb = Orb(column: column, row: row, element: element)
                 orbs[column, row] = orb
@@ -236,7 +236,7 @@ class PuzzleBoard {
     }
     
     func replaceOrb(at column: Int, row: Int) {
-        let newOrb = Orb(column: column, row: row, element: .randomElement(itemChance: 0))
+        let newOrb = Orb(column: column, row: row, element: .randomElement())
         orbs[column, row]?.sprite?.removeFromParent()
         orbs[column, row] = nil
         orbs[column, row] = newOrb

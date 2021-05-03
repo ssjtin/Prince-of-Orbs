@@ -28,7 +28,7 @@ enum Side: String {
 struct EnemyAttack: Decodable {
     let type: EffectType
     let value: Int?
-    let element: Element?
+    let element: OrbType?
     let side: Side?
     let chance: Int
     let description: String
@@ -51,7 +51,7 @@ struct EnemyAttack: Decodable {
         type = EffectType(rawValue: typeString)!
         value = try values.decodeIfPresent(Int.self, forKey: .value)
         if let elementNumber = try? values.decodeIfPresent(Int.self, forKey: .element) {
-            element = Element(rawValue: elementNumber)
+            element = OrbType(rawValue: elementNumber)
         } else {
             element = nil
         }

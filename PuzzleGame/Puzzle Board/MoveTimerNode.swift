@@ -14,7 +14,6 @@ protocol TimerDelegate: class {
 
 class MoveTimerNode: SKSpriteNode {
     
-    var timeLimit: TimeInterval = 4.0
     var isActive: Bool = false
     var timer: Timer?
     
@@ -32,7 +31,6 @@ class MoveTimerNode: SKSpriteNode {
         mainBar.zPosition = 10
         mainBar.position = CGPoint(x: -size.width/2, y: 0)
         addChild(mainBar)
-        mainBar.isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,11 +40,12 @@ class MoveTimerNode: SKSpriteNode {
     func startTimer() {
         guard !isActive else { return }
         
+        
         isActive = true
-        let scaleAction = SKAction.scaleX(to: 0, duration: timeLimit)
+        let scaleAction = SKAction.scaleX(to: 0, duration: GameService.shared.moveTime)
         mainBar.run(scaleAction, withKey: "timeLimitAnimate")
         
-        timer = Timer.scheduledTimer(withTimeInterval: timeLimit, repeats: false, block: { (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: GameService.shared.moveTime, repeats: false, block: { (_) in
             self.delegate?.timerDidEnd()
             self.timer = nil
             self.isActive = false

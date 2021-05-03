@@ -13,8 +13,8 @@ let healthBarWidth: CGFloat = 150.0
 let timeLimit: TimeInterval = 4.0
 
 let puzzleBoardMargin: CGFloat = 10
-let tileWidth: CGFloat = (screenWidth - 2 * puzzleBoardMargin) / 6
-let tileHeight: CGFloat = tileWidth
+let tileWidth: CGFloat = 50
+let tileHeight: CGFloat = 50
 
 let characterWindowWidth: CGFloat = 80.0
 

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "bernie_meme.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E07654625A48BF50034A3BD /* MatchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07654525A48BF50034A3BD /* MatchTarget.swift */; };
+		8E07654925A88A160034A3BD /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07654825A88A160034A3BD /* StoryViewController.swift */; };
 		8E0F5A9623DEEEAE0019D541 /* ComboSound11.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8823DEEEAD0019D541 /* ComboSound11.wav */; };
 		8E0F5A9723DEEEAE0019D541 /* ComboSound9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8923DEEEAD0019D541 /* ComboSound9.wav */; };
 		8E0F5A9823DEEEAE0019D541 /* TPASound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A8A23DEEEAD0019D541 /* TPASound.wav */; };
@@ -23,11 +25,9 @@
 		8E0F5AA323DEEEAE0019D541 /* ComboSound12.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8E0F5A9523DEEEAE0019D541 /* ComboSound12.wav */; };
 		8E1912562531AD0300F99DC5 /* StageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1912552531AD0300F99DC5 /* StageStruct.swift */; };
 		8E1912592531ADAF00F99DC5 /* EnemyEffectStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1912582531ADAF00F99DC5 /* EnemyEffectStruct.swift */; };
-		8E19125F2531AFF600F99DC5 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19125E2531AFF500F99DC5 /* ProgressBar.swift */; };
-		8E1912622531B51500F99DC5 /* HeroNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1912612531B51500F99DC5 /* HeroNode.swift */; };
+		8E1FA70F25A99B7C0019981B /* Number+String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1FA70E25A99B7C0019981B /* Number+String+Extensions.swift */; };
 		8E40EFDB2533153B00ED138D /* ItemStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EFDA2533153B00ED138D /* ItemStruct.swift */; };
-		8E40EFE0253355C600ED138D /* GameScene+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EFDF253355C600ED138D /* GameScene+Animations.swift */; };
-		8E40EFE325335C0700ED138D /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EFE225335C0700ED138D /* ItemNode.swift */; };
+		8E40EFE0253355C600ED138D /* PuzzleBoardScene+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EFDF253355C600ED138D /* PuzzleBoardScene+Animations.swift */; };
 		8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */; };
 		8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */; };
 		8EDC22FA23CA8F7A007BDE84 /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */; };
@@ -35,7 +35,7 @@
 		8EDC22FF23CA8F7E007BDE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC22FE23CA8F7E007BDE84 /* Assets.xcassets */; };
 		8EDC230223CA8F7E007BDE84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC230023CA8F7E007BDE84 /* LaunchScreen.storyboard */; };
 		8EDC230E23CA9461007BDE84 /* PuzzleBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230D23CA9461007BDE84 /* PuzzleBoard.swift */; };
-		8EDC231023CA974A007BDE84 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230F23CA974A007BDE84 /* GameScene.swift */; };
+		8EDC231023CA974A007BDE84 /* PuzzleBoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC230F23CA974A007BDE84 /* PuzzleBoardScene.swift */; };
 		8EDC231223CA98B5007BDE84 /* GameSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC231123CA98B5007BDE84 /* GameSound.swift */; };
 		8EDC232C23CA98E9007BDE84 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232923CA98E9007BDE84 /* Chain.swift */; };
 		8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232A23CA98E9007BDE84 /* Orb.swift */; };
@@ -44,12 +44,13 @@
 		8EDC233323CA9A75007BDE84 /* SKSpriteNode_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */; };
 		8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233123CA9A75007BDE84 /* Array2D.swift */; };
 		8EDC5FFC23E57B16002A671F /* MoveTimerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */; };
-		8EDC600023E68C02002A671F /* StageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC5FFF23E68C02002A671F /* StageNode.swift */; };
 		8EDC600423E82B91002A671F /* Stages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8EDC600323E82B91002A671F /* Stages.plist */; };
-		8EDC600623E9851D002A671F /* DamageResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC600523E9851D002A671F /* DamageResolver.swift */; };
+		8EE962ED25CEBAAF0007BD6F /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE962EC25CEBAAF0007BD6F /* GameService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E07654525A48BF50034A3BD /* MatchTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTarget.swift; sourceTree = "<group>"; };
+		8E07654825A88A160034A3BD /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		8E0F5A8823DEEEAD0019D541 /* ComboSound11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound11.wav; sourceTree = "<group>"; };
 		8E0F5A8923DEEEAD0019D541 /* ComboSound9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound9.wav; sourceTree = "<group>"; };
 		8E0F5A8A23DEEEAD0019D541 /* TPASound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TPASound.wav; sourceTree = "<group>"; };
@@ -66,11 +67,10 @@
 		8E0F5A9523DEEEAE0019D541 /* ComboSound12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ComboSound12.wav; sourceTree = "<group>"; };
 		8E1912552531AD0300F99DC5 /* StageStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageStruct.swift; sourceTree = "<group>"; };
 		8E1912582531ADAF00F99DC5 /* EnemyEffectStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEffectStruct.swift; sourceTree = "<group>"; };
-		8E19125E2531AFF500F99DC5 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
-		8E1912612531B51500F99DC5 /* HeroNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNode.swift; sourceTree = "<group>"; };
+		8E1FA70E25A99B7C0019981B /* Number+String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+String+Extensions.swift"; sourceTree = "<group>"; };
 		8E40EFDA2533153B00ED138D /* ItemStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStruct.swift; sourceTree = "<group>"; };
-		8E40EFDF253355C600ED138D /* GameScene+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Animations.swift"; sourceTree = "<group>"; };
-		8E40EFE225335C0700ED138D /* ItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
+		8E40EFDF253355C600ED138D /* PuzzleBoardScene+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PuzzleBoardScene+Animations.swift"; sourceTree = "<group>"; };
+		8E8942D025C57D6500C7F68C /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Shared.xcassets; path = "../../Library/Developer/Xcode/DerivedData/PuzzleGame-cozeesuoxlbzpwflfuijgzmwfrvg/SourcePackages/checkouts/TestSwiftPackage/Sources/TestPackage/Files/Shared Assets/Shared.xcassets"; sourceTree = "<group>"; };
 		8EDC22F223CA8F7A007BDE84 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		8EDC230123CA8F7E007BDE84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EDC230323CA8F7E007BDE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EDC230D23CA9461007BDE84 /* PuzzleBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleBoard.swift; sourceTree = "<group>"; };
-		8EDC230F23CA974A007BDE84 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		8EDC230F23CA974A007BDE84 /* PuzzleBoardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleBoardScene.swift; sourceTree = "<group>"; };
 		8EDC231123CA98B5007BDE84 /* GameSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSound.swift; sourceTree = "<group>"; };
 		8EDC232923CA98E9007BDE84 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		8EDC232A23CA98E9007BDE84 /* Orb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orb.swift; sourceTree = "<group>"; };
@@ -89,9 +89,8 @@
 		8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpriteNode_Extension.swift; sourceTree = "<group>"; };
 		8EDC233123CA9A75007BDE84 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTimerNode.swift; sourceTree = "<group>"; };
-		8EDC5FFF23E68C02002A671F /* StageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageNode.swift; sourceTree = "<group>"; };
 		8EDC600323E82B91002A671F /* Stages.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Stages.plist; sourceTree = "<group>"; };
-		8EDC600523E9851D002A671F /* DamageResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageResolver.swift; sourceTree = "<group>"; };
+		8EE962EC25CEBAAF0007BD6F /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E07654B25A93A940034A3BD /* StoryScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8E07654825A88A160034A3BD /* StoryViewController.swift */,
+			);
+			path = StoryScreen;
+			sourceTree = "<group>";
+		};
 		8E0F5AA423DEEEDF0019D541 /* Sound Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +141,6 @@
 				8EDC232A23CA98E9007BDE84 /* Orb.swift */,
 				8EDC232B23CA98E9007BDE84 /* Swap.swift */,
 				8EDC230D23CA9461007BDE84 /* PuzzleBoard.swift */,
-				8EDC600523E9851D002A671F /* DamageResolver.swift */,
 			);
 			path = "Puzzle Logic";
 			sourceTree = "<group>";
@@ -143,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */,
+				8E1FA70E25A99B7C0019981B /* Number+String+Extensions.swift */,
 			);
 			path = "Extensions + Helpers";
 			sourceTree = "<group>";
@@ -150,10 +157,9 @@
 		8E0F5AA723DEF1700019D541 /* Puzzle Board */ = {
 			isa = PBXGroup;
 			children = (
-				8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */,
 				8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */,
-				8EDC230F23CA974A007BDE84 /* GameScene.swift */,
-				8E40EFDF253355C600ED138D /* GameScene+Animations.swift */,
+				8EDC230F23CA974A007BDE84 /* PuzzleBoardScene.swift */,
+				8E40EFDF253355C600ED138D /* PuzzleBoardScene+Animations.swift */,
 				8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */,
 			);
 			path = "Puzzle Board";
@@ -164,35 +170,34 @@
 			children = (
 				8E1912552531AD0300F99DC5 /* StageStruct.swift */,
 				8E1912582531ADAF00F99DC5 /* EnemyEffectStruct.swift */,
-				8EDC5FFF23E68C02002A671F /* StageNode.swift */,
 				8EDC600323E82B91002A671F /* Stages.plist */,
-				8E19125E2531AFF500F99DC5 /* ProgressBar.swift */,
+				8E07654525A48BF50034A3BD /* MatchTarget.swift */,
 			);
 			path = Enemy;
-			sourceTree = "<group>";
-		};
-		8E1912642531B51F00F99DC5 /* Hero */ = {
-			isa = PBXGroup;
-			children = (
-				8E1912612531B51500F99DC5 /* HeroNode.swift */,
-			);
-			path = Hero;
 			sourceTree = "<group>";
 		};
 		8E40EFDD2533154100ED138D /* Item */ = {
 			isa = PBXGroup;
 			children = (
 				8E40EFDA2533153B00ED138D /* ItemStruct.swift */,
-				8E40EFE225335C0700ED138D /* ItemNode.swift */,
 			);
 			path = Item;
+			sourceTree = "<group>";
+		};
+		8EA3A7E325C537AA00BC1039 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8EDC22E923CA8F7A007BDE84 = {
 			isa = PBXGroup;
 			children = (
+				8E8942D025C57D6500C7F68C /* Shared.xcassets */,
 				8EDC22F423CA8F7A007BDE84 /* PuzzleGame */,
 				8EDC22F323CA8F7A007BDE84 /* Products */,
+				8EA3A7E325C537AA00BC1039 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,9 +215,10 @@
 				8EDC232F23CA9A75007BDE84 /* Constants.swift */,
 				8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */,
 				8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */,
+				8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */,
 				8E40EFDD2533154100ED138D /* Item */,
-				8E1912642531B51F00F99DC5 /* Hero */,
 				8E19125B2531AF5700F99DC5 /* Enemy */,
+				8E07654B25A93A940034A3BD /* StoryScreen */,
 				8E0F5AA723DEF1700019D541 /* Puzzle Board */,
 				8E0F5AA623DEF1370019D541 /* Extensions + Helpers */,
 				8E0F5AA523DEF11C0019D541 /* Puzzle Logic */,
@@ -221,6 +227,7 @@
 				8EDC22FE23CA8F7E007BDE84 /* Assets.xcassets */,
 				8EDC230023CA8F7E007BDE84 /* LaunchScreen.storyboard */,
 				8EDC230323CA8F7E007BDE84 /* Info.plist */,
+				8EE962EC25CEBAAF0007BD6F /* GameService.swift */,
 			);
 			path = PuzzleGame;
 			sourceTree = "<group>";
@@ -241,6 +248,8 @@
 			dependencies = (
 			);
 			name = PuzzleGame;
+			packageProductDependencies = (
+			);
 			productName = PuzzleGame;
 			productReference = 8EDC22F223CA8F7A007BDE84 /* PuzzleGame.app */;
 			productType = "com.apple.product-type.application";
@@ -269,6 +278,8 @@
 				Base,
 			);
 			mainGroup = 8EDC22E923CA8F7A007BDE84;
+			packageReferences = (
+			);
 			productRefGroup = 8EDC22F323CA8F7A007BDE84 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -312,24 +323,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDC5FFC23E57B16002A671F /* MoveTimerNode.swift in Sources */,
-				8E19125F2531AFF600F99DC5 /* ProgressBar.swift in Sources */,
-				8E40EFE325335C0700ED138D /* ItemNode.swift in Sources */,
 				8EDC22FA23CA8F7A007BDE84 /* PuzzleViewController.swift in Sources */,
 				8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */,
 				8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */,
 				8EDC233323CA9A75007BDE84 /* SKSpriteNode_Extension.swift in Sources */,
-				8E1912622531B51500F99DC5 /* HeroNode.swift in Sources */,
 				8EDC232C23CA98E9007BDE84 /* Chain.swift in Sources */,
-				8EDC231023CA974A007BDE84 /* GameScene.swift in Sources */,
+				8EDC231023CA974A007BDE84 /* PuzzleBoardScene.swift in Sources */,
 				8EDC231223CA98B5007BDE84 /* GameSound.swift in Sources */,
+				8E1FA70F25A99B7C0019981B /* Number+String+Extensions.swift in Sources */,
 				8EDC233223CA9A75007BDE84 /* Constants.swift in Sources */,
-				8EDC600023E68C02002A671F /* StageNode.swift in Sources */,
-				8EDC600623E9851D002A671F /* DamageResolver.swift in Sources */,
 				8E1912592531ADAF00F99DC5 /* EnemyEffectStruct.swift in Sources */,
+				8E07654925A88A160034A3BD /* StoryViewController.swift in Sources */,
 				8EDC230E23CA9461007BDE84 /* PuzzleBoard.swift in Sources */,
-				8E40EFE0253355C600ED138D /* GameScene+Animations.swift in Sources */,
+				8E40EFE0253355C600ED138D /* PuzzleBoardScene+Animations.swift in Sources */,
 				8EDC22F823CA8F7A007BDE84 /* SceneDelegate.swift in Sources */,
+				8EE962ED25CEBAAF0007BD6F /* GameService.swift in Sources */,
 				8EDC232D23CA98E9007BDE84 /* Orb.swift in Sources */,
+				8E07654625A48BF50034A3BD /* MatchTarget.swift in Sources */,
 				8EDC232E23CA98E9007BDE84 /* Swap.swift in Sources */,
 				8E1912562531AD0300F99DC5 /* StageStruct.swift in Sources */,
 				8E40EFDB2533153B00ED138D /* ItemStruct.swift in Sources */,
@@ -478,12 +488,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49H596ZHS6;
 				INFOPLIST_FILE = PuzzleGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hoangluong.UntitledGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -498,12 +510,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49H596ZHS6;
 				INFOPLIST_FILE = PuzzleGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hoangluong.UntitledGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

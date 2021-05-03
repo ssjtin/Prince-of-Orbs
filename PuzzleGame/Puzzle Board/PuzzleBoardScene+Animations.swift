@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-extension GameScene {
+extension PuzzleBoardScene {
     
     //Mark: ANIMATIONS
     
@@ -43,7 +43,6 @@ extension GameScene {
             
             let waitForSoundAction = SKAction.wait(forDuration: duration * Double(index))
             comboCount += 1
-            comboChains.append(contentsOf: chains)
             let soundAction = chain.orbs.count == 4 ? gameSound.TPASound : gameSound.comboSound(for: comboCount)
             run(SKAction.sequence([waitForSoundAction, soundAction]))
             
@@ -98,7 +97,7 @@ extension GameScene {
                 let sprite = SKSpriteNode(imageNamed: orb.spriteName)
                 sprite.size = CGSize(width: tileWidth, height: tileHeight)
                 sprite.position = pointFor(column: orb.column, row: startRow)
-                level.orbsLayer.addChild(sprite)
+                puzzleBoard.orbsLayer.addChild(sprite)
                 orb.sprite = sprite
                 // 4
                 let delay = 0.1 + 0.2 * TimeInterval(array.count - index - 1)

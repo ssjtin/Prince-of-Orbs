@@ -41,7 +41,7 @@ class Chain: Comparable, Hashable, CustomStringConvertible {
         return orbs.count - 3
     }
     
-    var element: Element {
+    var element: OrbType {
         if let first = orbs.first {
             return first.element
         }

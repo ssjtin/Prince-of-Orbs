@@ -6,18 +6,14 @@
 //  Copyright © 2019 Hoang Luong. All rights reserved.
 //
 
-/*
-    Item chance: 0...100 represents percentage chance a falling orb is an item.
- */
-
 
 import SpriteKit
 
-enum Element: Int, CaseIterable {
-    case unknown = 0, Fire, Water, Grass, Light, Dark, Coin, Item
+enum OrbType: Int, CaseIterable {
+    case unknown = 0, Fire, Water, Grass, Light, Dark, Coin
     
-    static var allCases: [Element] {
-        return [.unknown, .Fire, .Water, .Grass, .Light, .Dark, .Coin, .Item]
+    static var allCases: [OrbType] {
+        return [.Fire, .Water, .Grass, .Light, .Dark]
     }
     var spriteName: String {
         let spriteNames = [
@@ -26,20 +22,14 @@ enum Element: Int, CaseIterable {
             "green_orb",
             "light_orb",
             "dark_orb",
-            "coin_orb",
-            "item_orb"
+            "coin_orb"
         ]
         
         return spriteNames[rawValue - 1]
     }
     
-    static func randomElement(itemChance: Int = 0) -> Element {
-        
-        if Int(arc4random_uniform(99)) < itemChance {
-            return Element.Item
-        }
-        
-        return Element(rawValue: Int(arc4random_uniform(6)) + 1)!
+    static func randomElement() -> OrbType {
+        return OrbType(rawValue: Int(arc4random_uniform(6)) + 1)!
     }
     
 }
@@ -66,26 +56,17 @@ class Orb: CustomStringConvertible, Hashable, Comparable {
     
     var column: Int
     var row: Int
-    let element: Element
+    let element: OrbType
     var sprite: SKSpriteNode?
-    var item: Item?
     
     var spriteName: String {
-        if let item = item {
-            return item.imageName
-        } else {
-            return element.spriteName
-        }
+        return element.spriteName
     }
     
-    init(column: Int, row: Int, element: Element) {
+    init(column: Int, row: Int, element: OrbType) {
         self.column = column
         self.row = row
         self.element = element
-        
-        if element == .Item {
-            self.item = Item.random()
-        }
     }
     
 }
