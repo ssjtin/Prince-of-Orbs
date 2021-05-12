@@ -253,7 +253,6 @@ class PuzzleBoardScene: SKScene {
     }
     
     func resolveTurn() {
-        
         puzzleDelegate?.completedTurn(with: comboChains)
         
         comboChains.removeAll()

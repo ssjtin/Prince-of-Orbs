@@ -25,14 +25,18 @@ class GameService {
     //  Game variables
     var moveTime: TimeInterval = 4.0
     var orbMultiplier: Float = 1.0
-    //  One time use items held
-    var heldItems = [Item]()
-    var itemLimit = 1
-    //  Coin counter
-    var coinCount: Int = 10
+    //  clock counter
+    var clockCount: Int = 0
     
     init() {
         setTestLevels()
+    }
+    
+    func checkForObstructions() -> Obstruction? {
+        if currentStageInfo.turns.isMultiple(of: 2) {
+            return .slime(number: 2)
+        }
+        return nil
     }
     
     func setTestLevels() {
@@ -41,13 +45,14 @@ class GameService {
         self.stageIndex = 0
         
         //  Test targets
-        self.stageTargets.append(StageInfo(turns: 3, orbTargets: [OrbTarget(element: .Dark, targetCount: 3)]))
+        self.stageTargets.append(StageInfo(turns: 6, orbTargets: [OrbTarget(element: .Dark, targetCount: 10)]))
         
-        self.stageTargets.append(StageInfo(turns: 3, orbTargets: [OrbTarget(element: .Fire, targetCount: 3),
-                                                                        OrbTarget(element: .Water, targetCount: 3)]))
+        self.stageTargets.append(StageInfo(turns: 8, orbTargets: [OrbTarget(element: .Fire, targetCount: 12),
+                                                                        OrbTarget(element: .Water, targetCount: 10)]))
         
-        self.stageTargets.append(StageInfo(turns: 3, orbTargets: [OrbTarget(element: .Fire, targetCount: 7),
-                                                                        OrbTarget(element: .Grass, targetCount: 4)]))
+        self.stageTargets.append(StageInfo(turns: 8, orbTargets: [OrbTarget(element: .Fire, targetCount: 8),
+                                                                        OrbTarget(element: .Grass, targetCount: 8),
+                                                                        OrbTarget(element: .Water, targetCount: 8)]))
         
         self.stageTargets.append(StageInfo(turns: 5, orbTargets: [OrbTarget(element: .Fire, targetCount: 3),
                                                                         OrbTarget(element: .Water, targetCount: 3),
@@ -85,21 +90,7 @@ class GameService {
     
     func handle(_ matches: [Chain]) {
         currentStageInfo.update(with: matches, multiplier: orbMultiplier)
-        coinCount += matches.numOfCoinsMatched
-    }
-    
-    func handle(item: Item) {
-        if item.type == .oneTime {
-            heldItems.append(item)
-        } else {
-            if item.effect == .timeExtend {
-                moveTime += Double(item.effectValue)
-            }
-            if item.effect == .attackBoost {
-                orbMultiplier += item.effectValue
-            }
-        }
-        coinCount -= item.cost
+        clockCount += matches.numOfclocksMatched
     }
     
 }

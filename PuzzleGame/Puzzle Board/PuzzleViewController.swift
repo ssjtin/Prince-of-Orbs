@@ -19,6 +19,12 @@ class PuzzleViewController: UIViewController {
     
     @IBOutlet weak var stageImageView: UIImageView!
     
+    @IBOutlet weak var redStack: UIStackView!
+    @IBOutlet weak var blueStack: UIStackView!
+    @IBOutlet weak var greenStack: UIStackView!
+    @IBOutlet weak var goldStack: UIStackView!
+    @IBOutlet weak var purpleStack: UIStackView!
+    
     @IBOutlet weak var redLabel: UILabel!
     @IBOutlet weak var blueLabel: UILabel!
     @IBOutlet weak var greenLabel: UILabel!
@@ -26,31 +32,42 @@ class PuzzleViewController: UIViewController {
     @IBOutlet weak var darkLabel: UILabel!
     
     @IBOutlet weak var turnsLabel: UILabel!
-    @IBOutlet weak var coinLabel: UILabel!
+    @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var stageLabel: UILabel!
     
     var gameService = GameService.shared
+    
+    var puzzleBoardScene: PuzzleBoardScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         skView = self.view as? SKView
         
-        let scene = PuzzleBoardScene(size: puzzleBoardView.frame.size)
+        self.puzzleBoardScene = PuzzleBoardScene(size: puzzleBoardView.frame.size)
         
-        scene.puzzleDelegate = self
+        self.puzzleBoardScene.puzzleDelegate = self
 
-        puzzleBoardView.presentScene(scene)
+        puzzleBoardView.presentScene(puzzleBoardScene)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        syncTargetLabels()
+        syncTargetLabels(isInitialForStage: true)
     }
     
-    func syncTargetLabels() {
+    func syncTargetLabels(isInitialForStage: Bool = false) {
         let stageInfo = GameService.shared.currentStageInfo!
+        
+        if isInitialForStage {
+            //  Hide/show target stacks
+            redStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Fire }.isEmpty
+            blueStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Water }.isEmpty
+            greenStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Grass }.isEmpty
+            purpleStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Dark }.isEmpty
+            goldStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Light }.isEmpty
+        }
         
         stageInfo.orbTargets.forEach { (target) in
             switch target.element {
@@ -64,7 +81,7 @@ class PuzzleViewController: UIViewController {
         }
         turnsLabel.text = "Turns remaning : \(stageInfo.turns)"
         stageLabel.text = "Stage \(gameService.stageIndex+1)"
-        coinLabel.text = gameService.coinCount.asString
+        clockLabel.text = gameService.clockCount.asString
     }
     
     private func readStagesFromList() -> [Stage] {
@@ -83,46 +100,17 @@ class PuzzleViewController: UIViewController {
         return []
     }
     
-    func showItemShop() {
-        let alert = UIAlertController(title: "ITEM SHOP", message: "", preferredStyle: .actionSheet)
-        let items = Item.getTestItems()
-        let firstItem = UIAlertAction(title: items[0].description, style: .default) { (action) in
-            self.handleSelected(item: items[0])
-        }
-        let secondItem = UIAlertAction(title: items[1].description, style: .default) { (action) in
-            self.handleSelected(item: items[1])
-        }
-        let thirdItem = UIAlertAction(title: items[2].description, style: .default) { (action) in
-            self.handleSelected(item: items[2])
-        }
-        let quitAction = UIAlertAction(title: "Kechi da ne - CLOSE", style: .cancel) { (action) in
-            self.advanceToNextStage()
-        }
-        alert.addAction(firstItem)
-        alert.addAction(secondItem)
-        alert.addAction(thirdItem)
-        alert.addAction(quitAction)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func handleSelected(item: Item) {
-        //  Check if item can be afforded
-        if item.cost <= gameService.coinCount {
-            gameService.handle(item: item)
-            advanceToNextStage()
-        } else {
-            let alert = UIAlertController(title: "You're TOO POOR!", message: "", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.showItemShop()
-            }
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
     func advanceToNextStage() {
         gameService.advanceStage()
-        syncTargetLabels()
+        syncTargetLabels(isInitialForStage: true)
+    }
+    
+    func handle(obstruction: Obstruction) {
+        switch obstruction {
+        case .slime(let number):
+            puzzleBoardScene.puzzleBoard.putSlimes(number: number)
+        default: ()
+        }
     }
     
     func presentGameOverAlert(victory: Bool) {
@@ -130,7 +118,7 @@ class PuzzleViewController: UIViewController {
         let alert = UIAlertController(title: "Game over", message: title, preferredStyle: .alert)
         let repeatAction = UIAlertAction(title: "Play again?", style: .default) { (action) in
             self.gameService.setTestLevels()
-            self.syncTargetLabels()
+            self.syncTargetLabels(isInitialForStage: true)
         }
         alert.addAction(repeatAction)
         self.present(alert, animated: true, completion: nil)
@@ -148,11 +136,16 @@ extension PuzzleViewController: PuzzleBoardDelegate {
             presentGameOverAlert(victory: false)
         } else if gameService.currentStageInfo.completed {
             if (gameService.stageIndex + 1) < gameService.stageTargets.count {
-                showItemShop()
+                advanceToNextStage()
             } else {
                 presentGameOverAlert(victory: true)
             }
+        } else {
+            if let obstruction = gameService.checkForObstructions() {
+                handle(obstruction: obstruction)
+            }
         }
+        
     }
     
 }

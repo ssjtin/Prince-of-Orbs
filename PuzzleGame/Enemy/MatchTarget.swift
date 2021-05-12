@@ -27,6 +27,11 @@ struct OrbTarget {
     }
 }
 
+enum Obstruction {
+    case timeReduction(amount: TimeInterval)
+    case slime(number: Int)
+}
+
 /// Stage info including turns and targets of each orb type
 struct StageInfo {
     
@@ -40,6 +45,8 @@ struct StageInfo {
     var outOfTurns: Bool {
         return !(turns > 0)
     }
+    
+    
     
     mutating func update(with chains: [Chain], multiplier: Float) {
         for index in 0..<orbTargets.count {
@@ -56,8 +63,8 @@ extension Sequence where Element == Chain {
         return (self.filter { $0.element == type }).map { $0.length }.reduce(0, +)
     }
     
-    var numOfCoinsMatched: Int {
-        return (self.filter { $0.element == .Coin }).map { $0.length }.reduce(0, +)
+    var numOfclocksMatched: Int {
+        return numMatchedOrbs(type: .Time)
     }
     
 }

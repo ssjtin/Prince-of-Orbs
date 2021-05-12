@@ -244,4 +244,22 @@ class PuzzleBoard {
         addSprite(for: newOrb)
     }
     
+    func putSlime(for orb: Orb) {
+        let slimeOrb = Orb(column: orb.column, row: orb.row, element: .Slime)
+        orbs[orb.column, orb.row]?.sprite?.removeFromParent()
+        orbs[orb.column, orb.row] = slimeOrb
+        
+        addSprite(for: slimeOrb)
+    }
+    
+    func putSlimes(number: Int) {
+        for _ in 0..<number {
+            putSlime(for: randomOrb())
+        }
+    }
+    
+    func randomOrb() -> Orb {
+        return orbs[Int(arc4random_uniform(5)), Int(arc4random_uniform(4))]!
+    }
+    
 }
