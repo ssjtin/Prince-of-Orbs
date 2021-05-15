@@ -68,7 +68,6 @@
 		8E1912582531ADAF00F99DC5 /* EnemyEffectStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEffectStruct.swift; sourceTree = "<group>"; };
 		8E1FA70E25A99B7C0019981B /* Number+String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+String+Extensions.swift"; sourceTree = "<group>"; };
 		8E40EFDF253355C600ED138D /* PuzzleBoardScene+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PuzzleBoardScene+Animations.swift"; sourceTree = "<group>"; };
-		8E8942D025C57D6500C7F68C /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Shared.xcassets; path = "../../Library/Developer/Xcode/DerivedData/PuzzleGame-cozeesuoxlbzpwflfuijgzmwfrvg/SourcePackages/checkouts/TestSwiftPackage/Sources/TestPackage/Files/Shared Assets/Shared.xcassets"; sourceTree = "<group>"; };
 		8EDC22F223CA8F7A007BDE84 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDC22F523CA8F7A007BDE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,7 +183,6 @@
 		8EDC22E923CA8F7A007BDE84 = {
 			isa = PBXGroup;
 			children = (
-				8E8942D025C57D6500C7F68C /* Shared.xcassets */,
 				8EDC22F423CA8F7A007BDE84 /* PuzzleGame */,
 				8EDC22F323CA8F7A007BDE84 /* Products */,
 				8EA3A7E325C537AA00BC1039 /* Frameworks */,

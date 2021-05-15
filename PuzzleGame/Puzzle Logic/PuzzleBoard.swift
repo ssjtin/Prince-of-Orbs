@@ -125,6 +125,7 @@ class PuzzleBoard {
                     if orbs[column + 1, row]?.element == matchType &&
                         orbs[column + 2, row]?.element == matchType {
                         let chain = Chain()
+                        chain.direction = .horizontal
                         repeat {
                             chain.add(orb: orbs[column, row]!)
                             column += 1
@@ -154,6 +155,7 @@ class PuzzleBoard {
                     if orbs[column, row + 1]?.element == matchType &&
                         orbs[column, row + 2]?.element == matchType {
                         let chain = Chain()
+                        chain.direction = .vertical
                         repeat {
                             chain.add(orb: orbs[column, row]!)
                             row += 1
@@ -170,8 +172,25 @@ class PuzzleBoard {
     }
     
     func detectMatches() -> Set<Chain>? {
-        let combinedMatches = detectVerticalMatches().union(detectHorizontalMatches())
-        return combinedMatches.count == 0 ? nil : combinedMatches
+        var verticalMatches = detectVerticalMatches()
+        let horizontalMatches = detectHorizontalMatches()
+        
+        if verticalMatches.isEmpty {
+            print(horizontalMatches.map { $0.chainType })
+            return horizontalMatches.isEmpty ? nil : horizontalMatches
+        }
+        
+        verticalMatches.forEach { (verticalChain) in
+            horizontalMatches.forEach { (horizontalChain) in
+                if !verticalChain.combineIfNecessary(with: horizontalChain) {
+                    verticalMatches.insert(horizontalChain)
+                } else {
+                    
+                }
+            }
+        }
+        print(verticalMatches.map { $0.chainType })
+        return verticalMatches.count == 0 ? nil : verticalMatches
     }
     
     func removeMatches(_ chains: Set<Chain>) {
