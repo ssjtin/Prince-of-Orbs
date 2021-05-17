@@ -18,7 +18,7 @@ class PuzzleBoard {
     let tilesLayer = SKNode()
     let orbsLayer = SKNode()
     
-    private var orbs = Array2D<Orb>(columns: numColumns, rows: numRows)
+    var orbs = Array2D<Orb>(columns: numColumns, rows: numRows)
     
     init() {
         addTiles()
@@ -254,8 +254,11 @@ class PuzzleBoard {
         return columns
     }
     
-    func replaceOrb(at column: Int, row: Int) {
-        let newOrb = Orb(column: column, row: row, element: .randomElement())
+    func replaceOrb(at column: Int, row: Int, notReplacedWithElements: [OrbType] = []) {
+
+        guard let newElement = OrbType.allCases.filter { !notReplacedWithElements.contains($0) }.randomElement() else { return }
+        
+        let newOrb = Orb(column: column, row: row, element: newElement)
         orbs[column, row]?.sprite?.removeFromParent()
         orbs[column, row] = nil
         orbs[column, row] = newOrb

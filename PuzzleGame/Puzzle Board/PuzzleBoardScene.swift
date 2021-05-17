@@ -222,9 +222,7 @@ class PuzzleBoardScene: SKScene {
     }
     
     func handleMatches() {
-
         //  Recursive function that removes matches, refills, and continues until no new matches
-        
         func removeMatches(_ chains: Set<Chain>) {
             puzzleBoard.removeMatches(chains)
             animateMatchedOrbs(for: chains) {
@@ -253,12 +251,46 @@ class PuzzleBoardScene: SKScene {
     }
     
     func resolveTurn() {
+//        comboChains.filter{ $0.chainType == .Row }.forEach { (chain) in
+//            puzzleBoard.removeRandomOrbs(number: 2, element: chain.element)
+//        }
+        removeRandomOrbs(number: 2, element: .Water)
         puzzleDelegate?.completedTurn(with: comboChains)
         
         comboChains.removeAll()
         comboCount = 0
         self.didActivateTurn = false
         self.isUserInteractionEnabled = true
+    }
+    
+    func removeRandomOrbs(number: Int, element: OrbType) {
+        var filteredOrbs = puzzleBoard.orbs.allItems.filter { $0.element == element }
+        filteredOrbs.shuffle()
+        
+        
+        for index in 0..<number {
+            if !(filteredOrbs.count > index) {
+                break
+            }
+            let column = filteredOrbs[index].column
+            let row = filteredOrbs[index].row
+            let element = puzzleBoard.orbs[column, row]?.element ?? .unknown
+            
+            if let sprite = puzzleBoard.orbs[column, row]?.sprite {
+                if sprite.action(forKey: "removing") == nil {
+                    //Shrink orbs in chain
+                    let scaleAction = SKAction.scale(to: 0.1, duration: 0.3)
+                    scaleAction.timingMode = .easeOut
+                    //Wait according to combo sequence before starting animation
+                    sprite.run(SKAction.sequence([scaleAction, SKAction.removeFromParent()]), withKey: "removing")
+                }
+            }
+            run(SKAction.wait(forDuration: 0.3)) {
+                self.puzzleBoard.orbs[column, row] = nil
+                self.puzzleBoard.replaceOrb(at: column, row: row, notReplacedWithElements: [element])
+            }
+        }
+        
     }
 
 }
