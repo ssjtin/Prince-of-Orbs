@@ -23,7 +23,7 @@ class GameService {
     //  Set current stage
     var currentStageInfo: StageInfo!
     //  Game variables
-    var moveTime: TimeInterval = 4.0
+    var moveTime: TimeInterval = 5.0
     var orbMultiplier: Float = 1.0
     //  clock counter
     var clockCount: Int = 0

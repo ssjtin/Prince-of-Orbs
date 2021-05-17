@@ -69,13 +69,13 @@ class PuzzleBoardScene: SKScene {
         //Add child layers to parents
         addChild(gameLayer)
         gameLayer.addChild(puzzleBoard.puzzleNode)
-        gameLayer.position = CGPoint(x: -150, y: -150)
+        gameLayer.position = CGPoint(x: -180, y: -180)
     }
     
     private func configureTimerBar() {
         addChild(moveTimer)
         moveTimer.delegate = self
-        moveTimer.position = CGPoint(x: 0, y: 125)
+        moveTimer.position = CGPoint(x: 0, y: 155)
         moveTimer.zPosition = 10
     }
     
@@ -251,10 +251,10 @@ class PuzzleBoardScene: SKScene {
     }
     
     func resolveTurn() {
-//        comboChains.filter{ $0.chainType == .Row }.forEach { (chain) in
-//            puzzleBoard.removeRandomOrbs(number: 2, element: chain.element)
-//        }
-        removeRandomOrbs(number: 2, element: .Water)
+        comboChains.filter{ $0.chainType == .Column }.forEach { (chain) in
+            removeRandomOrbs(number: 2, element: chain.element)
+        }
+        
         puzzleDelegate?.completedTurn(with: comboChains)
         
         comboChains.removeAll()
