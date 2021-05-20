@@ -28,6 +28,14 @@ class PuzzleBoard {
         puzzleNode.addChild(orbsLayer)
     }
     
+    func refreshBoard() {
+        orbs.allItems.forEach { (orb) in
+            orb.sprite?.removeFromParent()
+        }
+        let newOrbs = shuffle()
+        addSprites(for: newOrbs)
+    }
+    
     private func pointFor(column: Int, row: Int) -> CGPoint {
         return CGPoint(
             x: CGFloat(column) * tileWidth + tileWidth / 2,

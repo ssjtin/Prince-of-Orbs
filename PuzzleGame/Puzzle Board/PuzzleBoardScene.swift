@@ -46,7 +46,6 @@ class PuzzleBoardScene: SKScene {
     var comboCount: Int = 0
     var comboChains: [Chain] = []
 
-    
     //  Scene layers
     let gameLayer = SKNode()
     let moveTimer = MoveTimerNode(size: CGSize(width: 200, height: 30))
@@ -75,7 +74,7 @@ class PuzzleBoardScene: SKScene {
     private func configureTimerBar() {
         addChild(moveTimer)
         moveTimer.delegate = self
-        moveTimer.position = CGPoint(x: 0, y: 155)
+        moveTimer.position = CGPoint(x: 0, y: 150)
         moveTimer.zPosition = 10
     }
     
@@ -251,6 +250,7 @@ class PuzzleBoardScene: SKScene {
     }
     
     func resolveTurn() {
+        //  Handle columns matched bonus
         comboChains.filter{ $0.chainType == .Column }.forEach { (chain) in
             removeRandomOrbs(number: 2, element: chain.element)
         }

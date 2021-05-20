@@ -23,7 +23,7 @@ class GameService {
     //  Set current stage
     var currentStageInfo: StageInfo!
     //  Game variables
-    var moveTime: TimeInterval = 6.0
+    var moveTime: TimeInterval = 5.0
     var orbMultiplier: Float = 1.0
     //  clock counter
     var clockCount: Int = 0
@@ -43,6 +43,7 @@ class GameService {
         
         self.stageTargets.removeAll()
         self.stageIndex = 0
+        self.clockCount = 0
         
         //  Test targets
         self.stageTargets.append(StageInfo(turns: 3, orbTargets: [OrbTarget(element: .Dark, targetCount: 3)]))
@@ -63,19 +64,13 @@ class GameService {
         self.stageTargets.append(StageInfo(turns: 8, orbTargets: [OrbTarget(element: .Water, targetCount: 10),
                                                                         OrbTarget(element: .Grass, targetCount: 10)]))
         
-        self.stageTargets.append(StageInfo(turns: 6, orbTargets: [OrbTarget(element: .Fire, targetCount: 12),
-                                                                        OrbTarget(element: .Water, targetCount: 12),
-                                                                        OrbTarget(element: .Grass, targetCount: 12),
-                                                                        OrbTarget(element: .Light, targetCount: 12),
-                                                                        OrbTarget(element: .Dark, targetCount: 12)]))
+        self.stageTargets.append(StageInfo(turns: 8, orbTargets: [OrbTarget(element: .Fire, targetCount: 6),
+                                                                        OrbTarget(element: .Water, targetCount: 6),
+                                                                        OrbTarget(element: .Grass, targetCount: 6),
+                                                                        OrbTarget(element: .Light, targetCount: 6),
+                                                                        OrbTarget(element: .Dark, targetCount: 6)]))
         
-        self.stageTargets.append(StageInfo(turns: 7, orbTargets: [OrbTarget(element: .Fire, targetCount: 12),
-                                                                        OrbTarget(element: .Water, targetCount: 12),
-                                                                        OrbTarget(element: .Grass, targetCount: 12),
-                                                                        OrbTarget(element: .Light, targetCount: 15),
-                                                                        OrbTarget(element: .Dark, targetCount: 15)]))
-        
-        self.stageTargets.append(StageInfo(turns: 8, orbTargets: [OrbTarget(element: .Fire, targetCount: 30)]))
+        self.stageTargets.append(StageInfo(turns: 10, orbTargets: [OrbTarget(element: .Fire, targetCount: 20)]))
         
         currentStageInfo = stageTargets[stageIndex]
     }

@@ -64,7 +64,7 @@ extension Sequence where Element == Chain {
     }
     
     var numOfclocksMatched: Int {
-        return numMatchedOrbs(type: .Time)
+        return self.filter { $0.element == .Time }.count
     }
     
 }

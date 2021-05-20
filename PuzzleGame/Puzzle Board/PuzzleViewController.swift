@@ -89,6 +89,7 @@ class PuzzleViewController: UIViewController {
         }
         turnsLabel.text = "Turns remaining : \(stageInfo.turns)"
         stageLabel.text = "Stage \(gameService.stageIndex+1)"
+        puzzleBoardScene.moveTimer.timebankLabel.text = String(GameService.shared.clockCount)
     }
     
     private func readStagesFromList() -> [Stage] {
@@ -126,6 +127,8 @@ class PuzzleViewController: UIViewController {
         let repeatAction = UIAlertAction(title: "Play again?", style: .default) { (action) in
             self.gameService.setTestLevels()
             self.syncTargetLabels(isInitialForStage: true)
+            self.puzzleBoardScene.puzzleBoard.refreshBoard()
+            self.puzzleBoardScene.moveTimer.timebankLabel.text = "0"
         }
         alert.addAction(repeatAction)
         self.present(alert, animated: true, completion: nil)
