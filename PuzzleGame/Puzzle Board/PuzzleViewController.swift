@@ -32,7 +32,6 @@ class PuzzleViewController: UIViewController {
     @IBOutlet weak var darkLabel: UILabel!
     
     @IBOutlet weak var turnsLabel: UILabel!
-    @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var stageLabel: UILabel!
     
     var gameService = GameService.shared
@@ -49,6 +48,16 @@ class PuzzleViewController: UIViewController {
         self.puzzleBoardScene.puzzleDelegate = self
 
         puzzleBoardView.presentScene(puzzleBoardScene)
+        stageImageView.layer.zPosition = -1
+        
+        turnsLabel.font = .preferredFont(forTextStyle: .title2)
+        turnsLabel.backgroundColor = .black
+        turnsLabel.textColor = .white
+        
+        [turnsLabel, stageLabel].forEach { (label) in
+            label?.layer.cornerRadius = 4
+            label?.layer.masksToBounds = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +68,6 @@ class PuzzleViewController: UIViewController {
     
     func syncTargetLabels(isInitialForStage: Bool = false) {
         let stageInfo = GameService.shared.currentStageInfo!
-        
         if isInitialForStage {
             //  Hide/show target stacks
             redStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Fire }.isEmpty
@@ -79,9 +87,8 @@ class PuzzleViewController: UIViewController {
             default: ()
             }
         }
-        turnsLabel.text = "Turns remaning : \(stageInfo.turns)"
+        turnsLabel.text = "Turns remaining : \(stageInfo.turns)"
         stageLabel.text = "Stage \(gameService.stageIndex+1)"
-        clockLabel.text = gameService.clockCount.asString
     }
     
     private func readStagesFromList() -> [Stage] {
