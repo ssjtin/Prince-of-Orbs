@@ -264,7 +264,7 @@ class PuzzleBoard {
     
     func replaceOrb(at column: Int, row: Int, notReplacedWithElements: [OrbType] = []) {
 
-        guard let newElement = OrbType.allCases.filter { !notReplacedWithElements.contains($0) }.randomElement() else { return }
+        guard let newElement = OrbType.allCases.filter({ !notReplacedWithElements.contains($0) }).randomElement() else { return }
         
         let newOrb = Orb(column: column, row: row, element: newElement)
         orbs[column, row]?.sprite?.removeFromParent()
@@ -275,11 +275,11 @@ class PuzzleBoard {
     }
     
     func putSlime(for orb: Orb) {
-        let slimeOrb = Orb(column: orb.column, row: orb.row, element: .Slime)
-        orbs[orb.column, orb.row]?.sprite?.removeFromParent()
-        orbs[orb.column, orb.row] = slimeOrb
-        
-        addSprite(for: slimeOrb)
+//        let slimeOrb = Orb(column: orb.column, row: orb.row, element: .Slime)
+//        orbs[orb.column, orb.row]?.sprite?.removeFromParent()
+//        orbs[orb.column, orb.row] = slimeOrb
+//        
+//        addSprite(for: slimeOrb)
     }
     
     func putSlimes(number: Int) {

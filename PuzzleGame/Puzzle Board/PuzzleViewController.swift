@@ -68,45 +68,25 @@ class PuzzleViewController: UIViewController {
     
     func syncTargetLabels(isInitialForStage: Bool = false) {
         let stageInfo = GameService.shared.currentStageInfo!
-        if isInitialForStage {
-            //  Hide/show target stacks
-            redStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Fire }.isEmpty
-            blueStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Water }.isEmpty
-            greenStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Grass }.isEmpty
-            purpleStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Dark }.isEmpty
-            goldStack.isHidden = stageInfo.orbTargets.filter { $0.element == OrbType.Light }.isEmpty
-        }
-        
-        stageInfo.orbTargets.forEach { (target) in
-            switch target.element {
-            case .Fire: redLabel.text = target.remainingCount.asString
-            case .Water: blueLabel.text = target.remainingCount.asString
-            case .Grass: greenLabel.text = target.remainingCount.asString
-            case .Light: goldLabel.text = target.remainingCount.asString
-            case .Dark: darkLabel.text = target.remainingCount.asString
-            default: ()
-            }
-        }
         turnsLabel.text = "Turns remaining : \(stageInfo.turns)"
         stageLabel.text = "Stage \(gameService.stageIndex+1)"
-        puzzleBoardScene.moveTimer.timebankLabel.text = String(GameService.shared.clockCount)
     }
     
-    private func readStagesFromList() -> [Stage] {
-        do {
-            if let path = Bundle.main.path(forResource: "Stages", ofType: "plist") {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let decoder = PropertyListDecoder()
-                let stages = try decoder.decode([Stage].self, from: data)
-                return stages
-            }
-        } catch let error {
-            print(error.localizedDescription)
-            return []
-        }
-        
-        return []
-    }
+//    private func readStagesFromList() -> [Stage] {
+//        do {
+//            if let path = Bundle.main.path(forResource: "Stages", ofType: "plist") {
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path))
+//                let decoder = PropertyListDecoder()
+//                let stages = try decoder.decode([Stage].self, from: data)
+//                return stages
+//            }
+//        } catch let error {
+//            print(error.localizedDescription)
+//            return []
+//        }
+//
+//        return []
+//    }
     
     func advanceToNextStage() {
         gameService.advanceStage()
@@ -114,11 +94,11 @@ class PuzzleViewController: UIViewController {
     }
     
     func handle(obstruction: Obstruction) {
-        switch obstruction {
-        case .slime(let number):
-            puzzleBoardScene.puzzleBoard.putSlimes(number: number)
-        default: ()
-        }
+//        switch obstruction {
+//        case .slime(let number):
+//            puzzleBoardScene.puzzleBoard.putSlimes(number: number)
+//        default: ()
+//        }
     }
     
     func presentGameOverAlert(victory: Bool) {

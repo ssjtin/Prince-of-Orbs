@@ -20,7 +20,6 @@ class MoveTimerNode: SKSpriteNode {
     
     var mainBar = SKSpriteNode()
     var timebankLabel = SKLabelNode()
-    var length: CGFloat = 200
     
     weak var delegate: TimerDelegate?
     
@@ -34,15 +33,15 @@ class MoveTimerNode: SKSpriteNode {
         mainBar.position = CGPoint(x: -size.width/2, y: 0)
         addChild(mainBar)
 
-        timebankLabel.text = String(GameService.shared.clockCount)
-        timebankLabel.zPosition = 10
-        timebankLabel.position = CGPoint(x: 140, y: -18)
-        addChild(timebankLabel)
-        
-        let label = SKLabelNode(text: "TIMEBANK")
-        label.position = CGPoint(x: 140, y: 14)
-        label.fontSize = 12
-        addChild(label)
+//        timebankLabel.text = String(GameService.shared.clockCount)
+//        timebankLabel.zPosition = 10
+//        timebankLabel.position = CGPoint(x: 140, y: -18)
+//        addChild(timebankLabel)
+//        
+//        let label = SKLabelNode(text: "TIMEBANK")
+//        label.position = CGPoint(x: 140, y: 14)
+//        label.fontSize = 12
+//        addChild(label)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,20 +57,21 @@ class MoveTimerNode: SKSpriteNode {
         
         timer = Timer.scheduledTimer(withTimeInterval: GameService.shared.moveTime, repeats: false, block: { (_) in
             //  End of normal time, start taking out timebanks
-            if GameService.shared.clockCount > 0 {
-                self.timebankLabel.addPulseEffect(circleOfRadius: 20)
-                self.timebankTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
-                    GameService.shared.clockCount -= 1
-                    self.timebankLabel.text = String(GameService.shared.clockCount)
-                    if GameService.shared.clockCount == 0 {
-                        self.endTimers()
-                    }
-
-                })
-                
-            } else {
-                self.endTimers()
-            }
+//            if GameService.shared.clockCount > 0 {
+//                self.timebankLabel.addPulseEffect(circleOfRadius: 20)
+//                self.timebankTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
+//                    GameService.shared.clockCount -= 1
+//                    self.timebankLabel.text = String(GameService.shared.clockCount)
+//                    if GameService.shared.clockCount == 0 {
+//                        self.endTimers()
+//                    }
+//
+//                })
+//
+//            } else {
+//                self.endTimers()
+//            }
+            self.endTimers()
 
         })
     }
@@ -98,7 +98,7 @@ class MoveTimerNode: SKSpriteNode {
     }
     
     func reset() {
-        mainBar.scale(to: CGSize(width: length, height: 30))
+        mainBar.scale(to: CGSize(width: healthBarWidth, height: 30))
     }
     
 }

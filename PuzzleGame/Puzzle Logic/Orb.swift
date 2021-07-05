@@ -10,10 +10,10 @@
 import SpriteKit
 
 enum OrbType: Int, CaseIterable {
-    case unknown = 0, Fire, Water, Grass, Light, Dark, Time, Slime
+    case unknown = 0, Fire, Water, Grass, Light, Dark, Silver
     
     static var allCases: [OrbType] {
-        return [.Fire, .Water, .Grass, .Light, .Dark]
+        return [.Fire, .Water, .Grass, .Light, .Dark, .Silver]
     }
     var spriteName: String {
         let spriteNames = [
@@ -22,11 +22,22 @@ enum OrbType: Int, CaseIterable {
             "green_orb",
             "light_orb",
             "dark_orb",
-            "time_orb",
-            "slime_orb"
+            "silver_orb"
         ]
         
         return spriteNames[rawValue - 1]
+    }
+    
+    var matchValue: Float {
+        switch self {
+        case .Fire: return 0.99
+        case .Water: return 2.0
+        case .Grass: return 3.5
+        case .Light: return 5.0
+        case .Dark: return 5.5
+        case .Silver: return 8.0
+        default: return 0
+        }
     }
     
     static func randomElement() -> OrbType {

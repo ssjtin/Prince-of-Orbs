@@ -189,42 +189,6 @@
             </objects>
             <point key="canvasLocation" x="-157.97101449275362" y="146.65178571428569"/>
         </scene>
-        <!--Story View Controller-->
-        <scene sceneID="xHu-DQ-vRO">
-            <objects>
-                <viewController id="pFv-kH-MyT" customClass="StoryViewController" customModule="PuzzleGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wFo-Mw-LIp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8G-eU-WLN">
-                                <rect key="frame" x="177" y="433" width="60" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="3cY-vw-qCP"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="button:" destination="r5L-5f-hcP" eventType="touchUpInside" id="KDo-9q-sz3"/>
-                                    <action selector="buttonPressed:" destination="pFv-kH-MyT" eventType="touchUpInside" id="UNy-9f-9P7"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="9Gr-nk-Jyd"/>
-                        <color key="backgroundColor" red="0.85437549372413757" green="1" blue="0.92192513089882588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="V8G-eU-WLN" firstAttribute="centerX" secondItem="wFo-Mw-LIp" secondAttribute="centerX" id="Pvf-bX-6Mu"/>
-                            <constraint firstItem="V8G-eU-WLN" firstAttribute="centerY" secondItem="wFo-Mw-LIp" secondAttribute="centerY" id="hy9-qf-F5z"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="button" destination="V8G-eU-WLN" id="v0f-lv-UAo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nnv-OV-gzL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="r5L-5f-hcP" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-1100" y="147"/>
-        </scene>
     </scenes>
     <resources>
         <image name="blue_orb" width="640" height="627"/>

@@ -8,25 +8,6 @@
 
 import Foundation
 
-/// Keep track of target count for specific orb type and number matched so far
-struct OrbTarget {
-    let element: OrbType
-    let targetCount: Int
-    var matchedCount: Int = 0
-    
-    var success: Bool {
-        return matchedCount >= targetCount
-    }
-    
-    var remainingCount: Int {
-        return max(targetCount - matchedCount, 0)
-    }
-    
-    mutating func add(_ numOrbs: Int) {
-        matchedCount = min(matchedCount + numOrbs, targetCount)
-    }
-}
-
 enum Obstruction {
     case timeReduction(amount: TimeInterval)
     case slime(number: Int)
@@ -36,22 +17,26 @@ enum Obstruction {
 struct StageInfo {
     
     var turns: Int
-    var orbTargets: [OrbTarget]
+    let targetValue: Float
+    var currentValue: Float = 0.0
     
-    var completed: Bool {
-        return orbTargets.filter { $0.success == false }.count == 0
-    }
     
     var outOfTurns: Bool {
         return !(turns > 0)
     }
     
-    
+    var completed: Bool {
+        return currentValue >= targetValue
+    }
     
     mutating func update(with chains: [Chain], multiplier: Float) {
-        for index in 0..<orbTargets.count {
-            orbTargets[index].add(Int(Float(chains.numMatchedOrbs(type: orbTargets[index].element)) * multiplier))
+        var matchedValue: Float = 0.0
+        chains.forEach { (chain) in
+            matchedValue += chain.element.matchValue
         }
+        print("Matched values = $\(matchedValue)")
+        currentValue += matchedValue
+        print("Total price = $\(currentValue)")
         turns -= 1
     }
 }
@@ -61,10 +46,6 @@ extension Sequence where Element == Chain {
     /// Return total number of matched orbs of given type from a chain of matches
     func numMatchedOrbs(type: OrbType) -> Int {
         return (self.filter { $0.element == type }).map { $0.length }.reduce(0, +)
-    }
-    
-    var numOfclocksMatched: Int {
-        return self.filter { $0.element == .Time }.count
     }
     
 }

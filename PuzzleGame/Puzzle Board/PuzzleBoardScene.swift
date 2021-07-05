@@ -48,7 +48,7 @@ class PuzzleBoardScene: SKScene {
 
     //  Scene layers
     let gameLayer = SKNode()
-    let moveTimer = MoveTimerNode(size: CGSize(width: 200, height: 30))
+    let moveTimer = MoveTimerNode(size: CGSize(width: healthBarWidth, height: 30))
     
     override init(size: CGSize) {
         super.init(size: size)
