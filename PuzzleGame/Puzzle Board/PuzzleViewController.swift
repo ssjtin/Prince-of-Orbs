@@ -15,23 +15,9 @@ class PuzzleViewController: UIViewController {
     
     weak var skView: SKView!
     
+    @IBOutlet weak var timerLabel: UITextView!
     @IBOutlet weak var puzzleBoardView: SKView!
-    
     @IBOutlet weak var stageImageView: UIImageView!
-    
-    @IBOutlet weak var redStack: UIStackView!
-    @IBOutlet weak var blueStack: UIStackView!
-    @IBOutlet weak var greenStack: UIStackView!
-    @IBOutlet weak var goldStack: UIStackView!
-    @IBOutlet weak var purpleStack: UIStackView!
-    
-    @IBOutlet weak var redLabel: UILabel!
-    @IBOutlet weak var blueLabel: UILabel!
-    @IBOutlet weak var greenLabel: UILabel!
-    @IBOutlet weak var goldLabel: UILabel!
-    @IBOutlet weak var darkLabel: UILabel!
-    
-    @IBOutlet weak var turnsLabel: UILabel!
     @IBOutlet weak var stageLabel: UILabel!
     
     var gameService = GameService.shared
@@ -49,14 +35,10 @@ class PuzzleViewController: UIViewController {
 
         puzzleBoardView.presentScene(puzzleBoardScene)
         stageImageView.layer.zPosition = -1
-        
-        turnsLabel.font = .preferredFont(forTextStyle: .title2)
-        turnsLabel.backgroundColor = .black
-        turnsLabel.textColor = .white
-        
-        [turnsLabel, stageLabel].forEach { (label) in
-            label?.layer.cornerRadius = 4
-            label?.layer.masksToBounds = true
+        NotificationCenter.default.addObserver(forName: .TimerUpdated, object: nil, queue: nil) { notification in
+            if let info = notification.userInfo, let timeValue = info["time"] as? TimeInterval {
+                print(timeValue)
+            }
         }
     }
     
@@ -68,7 +50,6 @@ class PuzzleViewController: UIViewController {
     
     func syncTargetLabels(isInitialForStage: Bool = false) {
         let stageInfo = GameService.shared.currentStageInfo!
-        turnsLabel.text = "Turns remaining : \(stageInfo.turns)"
         stageLabel.text = "Stage \(gameService.stageIndex+1)"
     }
     

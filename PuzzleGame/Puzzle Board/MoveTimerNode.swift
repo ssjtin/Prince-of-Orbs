@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-protocol TimerDelegate: class {
+protocol TimerDelegate: AnyObject {
     func timerDidEnd()
 }
 
@@ -72,8 +72,8 @@ class MoveTimerNode: SKSpriteNode {
 //                self.endTimers()
 //            }
             self.endTimers()
-
         })
+        
     }
     
     func endTimers() {

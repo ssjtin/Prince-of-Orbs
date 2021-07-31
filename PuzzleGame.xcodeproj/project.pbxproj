@@ -95,13 +95,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E07654B25A93A940034A3BD /* StoryScreen */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StoryScreen;
-			sourceTree = "<group>";
-		};
 		8E0F5AA423DEEEDF0019D541 /* Sound Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +189,6 @@
 				8EDC22F723CA8F7A007BDE84 /* SceneDelegate.swift */,
 				8EDC22FB23CA8F7A007BDE84 /* Main.storyboard */,
 				8E19125B2531AF5700F99DC5 /* Enemy */,
-				8E07654B25A93A940034A3BD /* StoryScreen */,
 				8E0F5AA723DEF1700019D541 /* Puzzle Board */,
 				8E0F5AA623DEF1370019D541 /* Extensions + Helpers */,
 				8E0F5AA523DEF11C0019D541 /* Puzzle Logic */,
