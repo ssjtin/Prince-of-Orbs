@@ -18,8 +18,8 @@ extension PuzzleBoardScene {
         let spriteA = swap.orbA.sprite!
         let spriteB = swap.orbB.sprite!
         
-        spriteA.zPosition = 100
-        spriteB.zPosition = 90
+        //spriteA.zPosition = 100
+        //spriteB.zPosition = 90
         
         let duration: TimeInterval = 0.01
         

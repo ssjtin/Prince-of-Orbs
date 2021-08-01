@@ -29,9 +29,7 @@ struct StageInfo {
         chains.forEach { (chain) in
             matchedValue += chain.element.matchValue
         }
-        print("Matched values = $\(matchedValue)")
         currentValue += matchedValue
-        print("Total price = $\(currentValue)")
     }
 }
 

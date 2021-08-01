@@ -9,28 +9,36 @@
 import UIKit
 import SpriteKit
 
-extension NumberFormatter {
-    static let secondsFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
-        return formatter
-    }()
-}
-
 class PuzzleViewController: UIViewController {
     
     //  Target
-    
     weak var skView: SKView!
     
     //  Tied to display link, display remaining timebank
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var billValueLabel: UILabel!
     
     @IBOutlet weak var puzzleBoardView: SKView!
     @IBOutlet weak var stageImageView: UIImageView!
     @IBOutlet weak var stageLabel: UILabel!
+    
+    //  Debug buttons for triggering obstructions
+    @IBAction func slimButtonPressed(_ sender: Any) {
+        puzzleBoardScene.puzzleBoard.putSlimes(number: 2)
+    }
+    
+    @IBAction func darknessPressed(_ sender: Any) {
+        puzzleBoardScene.puzzleBoard.addDarknessLayer()
+    }
+    
+    @IBAction func removeDarknessPressed(_ sender: Any) {
+        puzzleBoardScene.puzzleBoard.removeDarkness()
+    }
+    
+    @IBAction func discountPressed(_ sender: Any) {
+        puzzleBoardScene.puzzleBoard.replace(previousType: [OrbType.Light, OrbType.Dark, OrbType.Silver].randomElement()!, with: .Fire)
+    }
+    
     
     var gameService = GameService.shared
     
@@ -68,6 +76,7 @@ class PuzzleViewController: UIViewController {
     
     func syncTargetLabels(isInitialForStage: Bool = false) {
         stageLabel.text = "Stage \(gameService.stageIndex+1)"
+        billValueLabel.text = ("$\(gameService.currentStageInfo!.currentValue) / $\(gameService.currentStageInfo!.targetValue)")
     }
     
     func advanceToNextStage() {

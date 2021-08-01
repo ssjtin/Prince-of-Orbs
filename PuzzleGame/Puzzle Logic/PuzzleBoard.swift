@@ -14,9 +14,10 @@ let numRows = 5
 
 class PuzzleBoard {
     
-    let puzzleNode = SKNode()
     let tilesLayer = SKNode()
+    let puzzleNode = SKNode()
     let orbsLayer = SKNode()
+    let darkLayer = SKNode()
     
     var orbs = Array2D<Orb>(columns: numColumns, rows: numRows)
     
@@ -25,7 +26,11 @@ class PuzzleBoard {
         let newOrbs = shuffle()
         addSprites(for: newOrbs)
         puzzleNode.addChild(tilesLayer)
+        tilesLayer.zPosition = 1
         puzzleNode.addChild(orbsLayer)
+        orbsLayer.zPosition = 2
+        puzzleNode.addChild(darkLayer)
+        darkLayer.zPosition = 3
     }
     
     func refreshBoard() {
@@ -81,6 +86,35 @@ class PuzzleBoard {
     
     func shuffle() -> Set<Orb> {
         return createInitialOrbs()
+    }
+    
+    func addDarknessLayer() {
+        let orbPositions: [(column: Int, row: Int)] = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (2, 0), (2, 1), (1, 2), (2, 2)]
+        for position in orbPositions {
+            let darkNode = SKShapeNode(rectOf: CGSize(width: 60, height: 60))
+            darkNode.fillColor = .black
+            darkNode.position = pointFor(column: position.0, row: position.1)
+            darkLayer.addChild(darkNode)
+        }
+    }
+    
+    func removeDarkness() {
+        darkLayer.removeAllChildren()
+    }
+    
+    func replace(previousType: OrbType, with newType: OrbType) {
+        for column in 0..<numColumns {
+            for row in 0..<numRows {
+                if orbs[column, row]?.element == previousType {
+                    let newOrb = Orb(column: column, row: row, element: newType)
+                    orbs[column, row]?.sprite?.removeFromParent()
+                    orbs[column, row] = nil
+                    orbs[column, row] = newOrb
+                    
+                    addSprite(for: newOrb)
+                }
+            }
+        }
     }
     
     private func createInitialOrbs() -> Set<Orb> {
@@ -275,11 +309,11 @@ class PuzzleBoard {
     }
     
     func putSlime(for orb: Orb) {
-//        let slimeOrb = Orb(column: orb.column, row: orb.row, element: .Slime)
-//        orbs[orb.column, orb.row]?.sprite?.removeFromParent()
-//        orbs[orb.column, orb.row] = slimeOrb
-//        
-//        addSprite(for: slimeOrb)
+        let slimeOrb = Orb(column: orb.column, row: orb.row, element: .Slime)
+        orbs[orb.column, orb.row]?.sprite?.removeFromParent()
+        orbs[orb.column, orb.row] = slimeOrb
+        
+        addSprite(for: slimeOrb)
     }
     
     func putSlimes(number: Int) {

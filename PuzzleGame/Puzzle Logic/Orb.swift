@@ -10,7 +10,7 @@
 import SpriteKit
 
 enum OrbType: Int, CaseIterable {
-    case unknown = 0, Fire, Water, Grass, Light, Dark, Silver
+    case unknown = 0, Fire, Water, Grass, Light, Dark, Silver, Slime
     
     static var allCases: [OrbType] {
         return [.Fire, .Water, .Grass, .Light, .Dark, .Silver]
@@ -22,7 +22,8 @@ enum OrbType: Int, CaseIterable {
             "green_orb",
             "light_orb",
             "dark_orb",
-            "silver_orb"
+            "silver_orb",
+            "slime_orb"
         ]
         
         return spriteNames[rawValue - 1]

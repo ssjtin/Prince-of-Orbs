@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,29 +34,87 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hB9-4h-wGj">
-                                <rect key="frame" x="175" y="260" width="64.5" height="41"/>
+                                <rect key="frame" x="175" y="340.5" width="64.5" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <color key="textColor" red="0.0" green="0.81588001939999999" blue="0.56520157940000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh7-E3-6tO">
+                                <rect key="frame" x="16" y="723" width="382" height="41"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="43q-ud-ddo">
+                                <rect key="frame" x="299" y="68" width="91" height="132"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZP-di-aaU">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="30"/>
+                                        <color key="backgroundColor" red="0.85437549369999999" green="1" blue="0.92192513089999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Slime">
+                                            <color key="titleColor" red="0.032056121649999998" green="0.27902363990000001" blue="0.036395876389999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="slimButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5PI-G5-wSA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dz0-Hy-Tms">
+                                        <rect key="frame" x="0.0" y="34" width="91" height="30"/>
+                                        <color key="backgroundColor" red="0.85437549369999999" green="1" blue="0.92192513089999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Darkness">
+                                            <color key="titleColor" red="0.032056121649999998" green="0.27902363990000001" blue="0.036395876389999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="darknessPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hXU-8t-H4y"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pva-fT-vA1" userLabel="Remove Dark">
+                                        <rect key="frame" x="0.0" y="68" width="91" height="30"/>
+                                        <color key="backgroundColor" red="0.85437549369999999" green="1" blue="0.92192513089999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Remove Dark">
+                                            <color key="titleColor" red="0.032056121649999998" green="0.27902363990000001" blue="0.036395876389999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="removeDarknessPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mly-cu-fju"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vR8-JW-pv7" userLabel="Discount Button">
+                                        <rect key="frame" x="0.0" y="102" width="91" height="30"/>
+                                        <color key="backgroundColor" red="0.85437549369999999" green="1" blue="0.92192513089999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Discount">
+                                            <color key="titleColor" red="0.032056121649999998" green="0.27902363990000001" blue="0.036395876389999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="discountPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uKR-Fc-eTZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.91044959627951072" green="0.97017104498055295" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="43q-ud-ddo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="48M-8X-qDy"/>
                             <constraint firstItem="Dfc-9D-ozV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="4b2-H7-fr7"/>
-                            <constraint firstItem="3h3-Mr-f18" firstAttribute="top" secondItem="hB9-4h-wGj" secondAttribute="bottom" constant="30.5" id="6gd-Zd-7t5"/>
+                            <constraint firstItem="3h3-Mr-f18" firstAttribute="top" secondItem="hB9-4h-wGj" secondAttribute="bottom" constant="-50" id="6gd-Zd-7t5"/>
                             <constraint firstItem="Dfc-9D-ozV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="CJe-Il-MP2"/>
                             <constraint firstItem="6Rn-RG-GJv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dhe-4j-xLt"/>
                             <constraint firstItem="6Rn-RG-GJv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MET-Nv-d0y"/>
                             <constraint firstItem="6Rn-RG-GJv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VLM-cn-6g9"/>
                             <constraint firstItem="hB9-4h-wGj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W19-UI-t4P"/>
+                            <constraint firstItem="sh7-E3-6tO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="WAI-Tk-8z3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="43q-ud-ddo" secondAttribute="trailing" constant="24" id="bV4-a5-HiS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3h3-Mr-f18" secondAttribute="bottom" constant="170.5" id="eFR-3t-wge"/>
                             <constraint firstAttribute="bottom" secondItem="6Rn-RG-GJv" secondAttribute="bottom" id="l9d-F8-9oB"/>
                             <constraint firstItem="3h3-Mr-f18" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oim-wq-nij"/>
+                            <constraint firstItem="sh7-E3-6tO" firstAttribute="top" secondItem="3h3-Mr-f18" secondAttribute="bottom" constant="31.5" id="uXO-hr-Xhs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sh7-E3-6tO" secondAttribute="trailing" constant="16" id="wUF-fF-83n"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u14-Gu-MwZ"/>
                     <connections>
+                        <outlet property="billValueLabel" destination="sh7-E3-6tO" id="UJr-ab-Ycc"/>
                         <outlet property="puzzleBoardView" destination="3h3-Mr-f18" id="sOV-kV-Yz2"/>
                         <outlet property="stageImageView" destination="6Rn-RG-GJv" id="qGC-i9-q6A"/>
                         <outlet property="stageLabel" destination="Dfc-9D-ozV" id="IIC-UK-hVU"/>
@@ -69,5 +128,11 @@
     </scenes>
     <resources>
         <image name="forestbackground" width="1600" height="1199"/>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -24,8 +24,5 @@ let directionPadWidth: CGFloat = 200.0
 
 let stepDuration: TimeInterval = 0.3
 
-//  Assets
-let levelBackground = "background"
-
 let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height

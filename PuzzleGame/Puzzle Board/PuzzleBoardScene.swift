@@ -205,7 +205,6 @@ class PuzzleBoardScene: SKScene {
     
     func startMoveTimer() {
         GameService.shared.startTimer()
-        //moveTimer.startTimer()
     }
     
     func handleSwipe(_ swap: Swap) {
