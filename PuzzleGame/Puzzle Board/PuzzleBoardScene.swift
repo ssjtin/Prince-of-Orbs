@@ -48,7 +48,6 @@ class PuzzleBoardScene: SKScene {
 
     //  Scene layers
     let gameLayer = SKNode()
-    let moveTimer = MoveTimerNode(size: CGSize(width: healthBarWidth, height: 30))
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -57,7 +56,10 @@ class PuzzleBoardScene: SKScene {
         scaleMode = .aspectFill
         
         configureMainLayers()
-        configureTimerBar()
+        
+        NotificationCenter.default.addObserver(forName: .TimebankDepleted, object: nil, queue: nil) { _ in
+            self.endMove()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,13 +71,6 @@ class PuzzleBoardScene: SKScene {
         addChild(gameLayer)
         gameLayer.addChild(puzzleBoard.puzzleNode)
         gameLayer.position = CGPoint(x: -180, y: -180)
-    }
-    
-    private func configureTimerBar() {
-        addChild(moveTimer)
-        moveTimer.delegate = self
-        moveTimer.position = CGPoint(x: 0, y: 150)
-        moveTimer.zPosition = 10
     }
     
     func pointFor(column: Int, row: Int) -> CGPoint {
@@ -160,7 +155,8 @@ class PuzzleBoardScene: SKScene {
                 guard toRow >= 0 && toRow < numRows else { return }
                 
                 swipedOrbs.append((toColumn, toRow))
-                moveTimer.startTimer()
+                startMoveTimer()
+                //moveTimer.startTimer()
                 didActivateTurn = true
                 
                 if swipedOrbs.count == 2 {
@@ -191,7 +187,8 @@ class PuzzleBoardScene: SKScene {
         isSwiping = false
         lastCoordinate = nil
         if didActivateTurn {
-            moveTimer.cancelTimer()
+            GameService.shared.stopTimer()
+            //moveTimer.cancelTimer()
             isUserInteractionEnabled = false
             handleMatches()
         }
@@ -207,7 +204,8 @@ class PuzzleBoardScene: SKScene {
     }
     
     func startMoveTimer() {
-        moveTimer.startTimer()
+        GameService.shared.startTimer()
+        //moveTimer.startTimer()
     }
     
     func handleSwipe(_ swap: Swap) {
@@ -295,12 +293,12 @@ class PuzzleBoardScene: SKScene {
 
 }
 
-extension PuzzleBoardScene: TimerDelegate {
-    
-    func timerDidEnd() {
-        if self.isSwiping == true {
-            endMove()
-        }
-    }
-    
-}
+//extension PuzzleBoardScene: TimerDelegate {
+//
+//    func timerDidEnd() {
+//        if self.isSwiping == true {
+//            endMove()
+//        }
+//    }
+//
+//}

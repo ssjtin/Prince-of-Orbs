@@ -40,7 +40,6 @@
 		8EDC233223CA9A75007BDE84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC232F23CA9A75007BDE84 /* Constants.swift */; };
 		8EDC233323CA9A75007BDE84 /* SKSpriteNode_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */; };
 		8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC233123CA9A75007BDE84 /* Array2D.swift */; };
-		8EDC5FFC23E57B16002A671F /* MoveTimerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */; };
 		8EE962ED25CEBAAF0007BD6F /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE962EC25CEBAAF0007BD6F /* GameService.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,7 +79,6 @@
 		8EDC232F23CA9A75007BDE84 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8EDC233023CA9A75007BDE84 /* SKSpriteNode_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpriteNode_Extension.swift; sourceTree = "<group>"; };
 		8EDC233123CA9A75007BDE84 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
-		8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTimerNode.swift; sourceTree = "<group>"; };
 		8EE962EC25CEBAAF0007BD6F /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +141,6 @@
 				8EDC22F923CA8F7A007BDE84 /* PuzzleViewController.swift */,
 				8EDC230F23CA974A007BDE84 /* PuzzleBoardScene.swift */,
 				8E40EFDF253355C600ED138D /* PuzzleBoardScene+Animations.swift */,
-				8EDC5FFB23E57B16002A671F /* MoveTimerNode.swift */,
 			);
 			path = "Puzzle Board";
 			sourceTree = "<group>";
@@ -291,7 +288,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EDC5FFC23E57B16002A671F /* MoveTimerNode.swift in Sources */,
 				8EDC22FA23CA8F7A007BDE84 /* PuzzleViewController.swift in Sources */,
 				8EDC233423CA9A75007BDE84 /* Array2D.swift in Sources */,
 				8EDC22F623CA8F7A007BDE84 /* AppDelegate.swift in Sources */,

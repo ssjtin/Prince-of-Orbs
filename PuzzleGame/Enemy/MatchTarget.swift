@@ -16,14 +16,9 @@ enum Obstruction {
 /// Stage info including turns and targets of each orb type
 struct StageInfo {
     
-    var turns: Int
+    let timebank: TimeInterval
     let targetValue: Float
     var currentValue: Float = 0.0
-    
-    
-    var outOfTurns: Bool {
-        return !(turns > 0)
-    }
     
     var completed: Bool {
         return currentValue >= targetValue
@@ -37,7 +32,6 @@ struct StageInfo {
         print("Matched values = $\(matchedValue)")
         currentValue += matchedValue
         print("Total price = $\(currentValue)")
-        turns -= 1
     }
 }
 

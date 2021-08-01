@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,16 +18,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forestbackground" translatesAutoresizingMaskIntoConstraints="NO" id="6Rn-RG-GJv">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="I wanna be a 最強 heeee-rooooo!!!!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HJu-iA-cuW">
-                                <rect key="frame" x="47" y="263.5" width="320" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="8ei-fL-TSl"/>
-                                    <constraint firstAttribute="width" constant="320" id="ttw-DA-3F6"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3h3-Mr-f18">
                                 <rect key="frame" x="27" y="331.5" width="360" height="360"/>
                                 <constraints>
@@ -37,10 +26,16 @@
                                 </constraints>
                             </skView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfc-9D-ozV">
-                                <rect key="frame" x="24" y="68" width="73.5" height="37"/>
+                                <rect key="frame" x="24" y="68" width="80" height="41"/>
                                 <color key="backgroundColor" red="0.83757440688947649" green="0.77767542891148966" blue="0.8651635362694301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <color key="textColor" red="0.27573234971321697" green="0.0" blue="0.47182642487046633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hB9-4h-wGj">
+                                <rect key="frame" x="175" y="260" width="64.5" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" red="0.0" green="0.81588001939999999" blue="0.56520157940000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -48,14 +43,14 @@
                         <color key="backgroundColor" red="0.91044959627951072" green="0.97017104498055295" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Dfc-9D-ozV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="4b2-H7-fr7"/>
+                            <constraint firstItem="3h3-Mr-f18" firstAttribute="top" secondItem="hB9-4h-wGj" secondAttribute="bottom" constant="30.5" id="6gd-Zd-7t5"/>
                             <constraint firstItem="Dfc-9D-ozV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="CJe-Il-MP2"/>
-                            <constraint firstItem="3h3-Mr-f18" firstAttribute="top" secondItem="HJu-iA-cuW" secondAttribute="bottom" constant="12" id="CeP-rP-UdF"/>
                             <constraint firstItem="6Rn-RG-GJv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dhe-4j-xLt"/>
                             <constraint firstItem="6Rn-RG-GJv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MET-Nv-d0y"/>
                             <constraint firstItem="6Rn-RG-GJv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VLM-cn-6g9"/>
+                            <constraint firstItem="hB9-4h-wGj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W19-UI-t4P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3h3-Mr-f18" secondAttribute="bottom" constant="170.5" id="eFR-3t-wge"/>
                             <constraint firstAttribute="bottom" secondItem="6Rn-RG-GJv" secondAttribute="bottom" id="l9d-F8-9oB"/>
-                            <constraint firstItem="HJu-iA-cuW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nHB-Wq-qf8"/>
                             <constraint firstItem="3h3-Mr-f18" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oim-wq-nij"/>
                         </constraints>
                     </view>
@@ -64,7 +59,7 @@
                         <outlet property="puzzleBoardView" destination="3h3-Mr-f18" id="sOV-kV-Yz2"/>
                         <outlet property="stageImageView" destination="6Rn-RG-GJv" id="qGC-i9-q6A"/>
                         <outlet property="stageLabel" destination="Dfc-9D-ozV" id="IIC-UK-hVU"/>
-                        <outlet property="timerLabel" destination="HJu-iA-cuW" id="U6m-BC-L2A"/>
+                        <outlet property="timerLabel" destination="hB9-4h-wGj" id="E1Q-Ej-E0t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -74,8 +69,5 @@
     </scenes>
     <resources>
         <image name="forestbackground" width="1600" height="1199"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

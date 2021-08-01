@@ -17,6 +17,7 @@ import UIKit
 
 extension Notification.Name {
     static let TimerUpdated = Notification.Name("timerUpdatedNotification")
+    static let TimebankDepleted = Notification.Name("timebankDepleted")
 }
 
 class GameService {
@@ -31,20 +32,34 @@ class GameService {
     var moveTime: TimeInterval = 5.0
     var orbMultiplier: Float = 1.0
     
-    var timebank: TimeInterval = 15.0
+    var timebank: TimeInterval = 0 {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name.TimerUpdated, object: nil, userInfo: ["time": timebank])
+        }
+    }
     var displayLink: CADisplayLink!
     
     init() {
         displayLink = CADisplayLink(target: self, selector: #selector(updateTimer))
         displayLink.add(to: .current,
                         forMode: RunLoop.Mode.default)
-        //displayLink.isPaused = true
+        displayLink.isPaused = true
         setTestLevels()
     }
     
+    func startTimer() {
+        displayLink.isPaused = false
+    }
+    
+    func stopTimer() {
+        displayLink.isPaused = true
+    }
+    
     @objc func updateTimer() {
-        timebank -= 0.02
-        NotificationCenter.default.post(name: Notification.Name.TimerUpdated, object: nil, userInfo: ["time": timebank])
+        timebank -= max(0.02, 0)
+        if timebank <= 0 {
+            NotificationCenter.default.post(name: Notification.Name.TimebankDepleted, object: nil)
+        }
     }
     
     func checkForObstructions() -> Obstruction? {
@@ -57,15 +72,17 @@ class GameService {
         self.stageIndex = 0
         
         //  Test targets
-        self.stageTargets.append(StageInfo(turns: 3, targetValue: 15))
-        self.stageTargets.append(StageInfo(turns: 3, targetValue: 20))
+        self.stageTargets.append(StageInfo(timebank: 15, targetValue: 15))
+        self.stageTargets.append(StageInfo(timebank: 15, targetValue: 20))
         
         currentStageInfo = stageTargets[stageIndex]
+        timebank = currentStageInfo.timebank
     }
     
     func advanceStage() {
         stageIndex += 1
         currentStageInfo = stageTargets[stageIndex]
+        timebank = currentStageInfo.timebank
     }
     
     func handle(_ matches: [Chain]) {

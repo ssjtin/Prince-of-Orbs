@@ -9,13 +9,25 @@
 import UIKit
 import SpriteKit
 
+extension NumberFormatter {
+    static let secondsFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+}
+
 class PuzzleViewController: UIViewController {
     
     //  Target
     
     weak var skView: SKView!
     
-    @IBOutlet weak var timerLabel: UITextView!
+    //  Tied to display link, display remaining timebank
+    @IBOutlet weak var timerLabel: UILabel!
+    
     @IBOutlet weak var puzzleBoardView: SKView!
     @IBOutlet weak var stageImageView: UIImageView!
     @IBOutlet weak var stageLabel: UILabel!
@@ -37,7 +49,7 @@ class PuzzleViewController: UIViewController {
         stageImageView.layer.zPosition = -1
         NotificationCenter.default.addObserver(forName: .TimerUpdated, object: nil, queue: nil) { notification in
             if let info = notification.userInfo, let timeValue = info["time"] as? TimeInterval {
-                print(timeValue)
+                self.updateTimeLabel(value: timeValue)
             }
         }
     }
@@ -48,26 +60,15 @@ class PuzzleViewController: UIViewController {
         syncTargetLabels(isInitialForStage: true)
     }
     
-    func syncTargetLabels(isInitialForStage: Bool = false) {
-        let stageInfo = GameService.shared.currentStageInfo!
-        stageLabel.text = "Stage \(gameService.stageIndex+1)"
+    func updateTimeLabel(value: TimeInterval) {
+        if let string = NumberFormatter.secondsFormatter.string(from: NSNumber(value: value)){
+            self.timerLabel.text = string
+        }
     }
     
-//    private func readStagesFromList() -> [Stage] {
-//        do {
-//            if let path = Bundle.main.path(forResource: "Stages", ofType: "plist") {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-//                let decoder = PropertyListDecoder()
-//                let stages = try decoder.decode([Stage].self, from: data)
-//                return stages
-//            }
-//        } catch let error {
-//            print(error.localizedDescription)
-//            return []
-//        }
-//
-//        return []
-//    }
+    func syncTargetLabels(isInitialForStage: Bool = false) {
+        stageLabel.text = "Stage \(gameService.stageIndex+1)"
+    }
     
     func advanceToNextStage() {
         gameService.advanceStage()
@@ -89,7 +90,6 @@ class PuzzleViewController: UIViewController {
             self.gameService.setTestLevels()
             self.syncTargetLabels(isInitialForStage: true)
             self.puzzleBoardScene.puzzleBoard.refreshBoard()
-            self.puzzleBoardScene.moveTimer.timebankLabel.text = "0"
         }
         alert.addAction(repeatAction)
         self.present(alert, animated: true, completion: nil)
@@ -103,7 +103,7 @@ extension PuzzleViewController: PuzzleBoardDelegate {
         gameService.handle(matches)
         syncTargetLabels()
         
-        if gameService.currentStageInfo.outOfTurns && !gameService.currentStageInfo.completed {
+        if gameService.timebank <= 0 && !gameService.currentStageInfo.completed {
             presentGameOverAlert(victory: false)
         } else if gameService.currentStageInfo.completed {
             if (gameService.stageIndex + 1) < gameService.stageTargets.count {
